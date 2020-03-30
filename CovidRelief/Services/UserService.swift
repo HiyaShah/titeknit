@@ -1,0 +1,114 @@
+//
+//  UserService.swift
+//  CovidRelief
+//
+//  Created by Hiya Shah on 3/27/20.
+//  Copyright © 2020 Hiya Shah. All rights reserved.
+//
+
+import Foundation
+import FirebaseAuth
+import FirebaseFirestore
+
+let UserService = _UserService()
+
+final class _UserService {
+    
+    // Variables
+    var user = User()
+    var favorites = [Listing]()
+    let auth = Auth.auth()
+    let db = Firestore.firestore()
+    var userListener : ListenerRegistration? = nil
+    var favsListener : ListenerRegistration? = nil
+    
+    var isGuest : Bool {
+        
+        guard let authUser = auth.currentUser else {
+            return true
+        }
+        if authUser.isAnonymous {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func getCurrentUser() {
+        guard let authUser = auth.currentUser else { return }
+        
+        let userRef = db.collection("users").document(authUser.uid)
+        userListener = userRef.addSnapshotListener({ (snap, error) in
+            
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            
+            guard let data = snap?.data() else { return }
+            self.user = User.init(data: data)
+        })
+        
+        let favsRef = userRef.collection("favorites")
+        favsListener = favsRef.addSnapshotListener({ (snap, error) in
+            
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            
+            snap?.documents.forEach({ (document) in
+                let favorite = Listing.init(data: document.data())
+                self.favorites.append(favorite)
+            })
+        })
+    }
+    
+    func favoriteSelected(listing: Listing) {
+        print("favsRef in the making")
+        let favsRef = Firestore.firestore().collection("users").document(user.id).collection("favorites") 
+        print("favsRef made")
+        if favorites.contains(listing) {
+            // We remove it as a favorite
+            favorites.removeAll{ $0 == listing }
+            favsRef.document(listing.id).delete()
+        } else {
+            // Add as a favorite.
+            favorites.append(listing)
+            let data = Listing.modelToData(listing: listing)
+            favsRef.document(listing.id).setData(data)
+        }
+    }
+
+    
+    func getUsername() -> String {
+        return user.username
+    }
+    
+    func getEmail() -> String {
+        return user.email
+    }
+    
+    func getCity() -> String {
+        return user.city
+    }
+    func getId() -> String {
+        return user.id
+    }
+    func getUser() -> User {
+        return user
+    }
+    
+    
+    
+    
+    func logoutUser() {
+        userListener?.remove()
+        userListener = nil
+        favsListener?.remove()
+        favsListener = nil
+        user = User()
+        favorites.removeAll()
+    }
+}
+
