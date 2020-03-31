@@ -1,33 +1,27 @@
 //
 //  LocationManager.swift
-//  CovidRelief
+//  ZipcodeApi
 //
-//  Created by Hiya Shah on 3/29/20.
+//  Created by Hiya Shah on 3/30/20.
 //  Copyright © 2020 Hiya Shah. All rights reserved.
 //
 
-import UIKit
-import CoreLocation
+import Foundation
 
 protocol LocationManagerDelegate {
-    func didUpdateWeather(_ weatherManager: LocationManager, weather: LocationModel)
+    func didUpdateLocation(_ locationManager: LocationManager, location: LocationModel)
     func didFailWithError(error: Error)
 }
 
 struct LocationManager {
-    let weatherURL =
+    let locationURL =
         //must change to https from http
-    "https://api.openweathermap.org/data/2.5/weather?appid=c77d7597600464fc1146c28a986ac945"
+    "https://www.zipcodeapi.com/rest/lm9IzBEU6VprWrk7SEO9OAmVMnF1HJlCAbrqQqtH0zEn2nsQEiCCv7IFLL1sJtqY/info.json"
     
     var delegate: LocationManagerDelegate?
     
-    func fetchLocation(cityName: String) {
-        let urlString = "\(weatherURL)&q=\(cityName)"
-        performRequest(with: urlString)
-    }
-    
-    func fetchLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+    func fetchCity(zipcode: String) {
+        let urlString = "\(locationURL)/\(zipcode)/degrees"
         performRequest(with: urlString)
     }
     
@@ -43,8 +37,8 @@ struct LocationManager {
                     return
                 }
                 if let safeData = data {
-                    if let weather = self.parseJSON(safeData) {
-                        self.delegate?.didUpdateWeather(self, weather: weather)
+                    if let location = self.parseJSON(safeData) {
+                        self.delegate?.didUpdateLocation(self, location: location)
                     }
                 }
             }
@@ -54,20 +48,14 @@ struct LocationManager {
         }
     }
     
-    func parseJSON(_ weatherData: Data) -> LocationModel? {
+    func parseJSON(_ locationData: Data) -> LocationModel? {
         let decoder = JSONDecoder()
         do {
-            let decodedData = try decoder.decode(LocationData.self, from: weatherData)
-            let country = decodedData.sys.country
-            let name = decodedData.name
-            let lon = decodedData.coord.lon
-            let lat = decodedData.coord.lat
-            UserService.user.city = name
-            UserService.user.country = country
-            UserService.user.lon = lon
-            UserService.user.lat = lat
-
-            let weather = LocationModel(latitude: lat, longitude: lon, cityName: name, countryName: country)
+            let decodedData = try decoder.decode(LocationData.self, from: locationData)
+            let city = decodedData.city
+            let zipcode = decodedData.zip_code
+            
+            let weather = LocationModel(zipcode: zipcode, cityName: city)
             return weather
             
         } catch {
@@ -75,8 +63,6 @@ struct LocationManager {
             return nil
         }
     }
-    
-    
-    
 }
+
 

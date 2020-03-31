@@ -15,6 +15,10 @@ class RegisterVC: UIViewController {
 
     @IBOutlet weak var usernameTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
+    
+    @IBOutlet weak var zipcodeTxt: UITextField!
+    
+    
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var confirmPassTxt: UITextField!
     
@@ -23,16 +27,11 @@ class RegisterVC: UIViewController {
     
     @IBOutlet weak var confirmPassCheckImg: UIImageView!
     
-    var weatherManager =  LocationManager()
-    let locationManager = CLLocationManager()
-    var cityName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation() //startupdatinglocation is for continuous
+        
         
         
         
@@ -73,6 +72,7 @@ class RegisterVC: UIViewController {
     
     @IBAction func registerClicked(_ sender: Any) {
         guard let email = emailTxt.text , email.isNotEmpty ,
+            let zipcode = zipcodeTxt.text, zipcode.isNotEmpty,
             let username = usernameTxt.text , username.isNotEmpty ,
             let password = passwordTxt.text , password.isNotEmpty else {
                 simpleAlert(title: "Error", msg: "Please fill out all fields.")
@@ -100,7 +100,7 @@ class RegisterVC: UIViewController {
                 return
             }
             guard let firUser = result?.user else { return }
-            let user = User.init(id: firUser.uid, email: email, username: username, city: self.cityName)
+            let user = User.init(id: firUser.uid, email: email, username: username, zipcode: zipcode, city: "Pleasanton")
             // Upload to Firestore
             self.createFirestoreUser(user: user)
             self.activityIndicator.stopAnimating()
@@ -109,75 +109,23 @@ class RegisterVC: UIViewController {
             
         }
     
-    func createFirestoreUser(user: User) {
-        // Step 1: Create document reference
-        let newUserRef = Firestore.firestore().collection("users").document(user.id)
-        
-        // Step 2: Create model data
-        let data = User.modelToData(user: user)
-        
-        // Step 3: Upload to Firestore.
-        newUserRef.setData(data) { (error) in
-            if let error = error {
-                Auth.auth().handleFireAuthError(error: error, vc: self)
-                debugPrint("Error signing in: \(error.localizedDescription)")
-            } else {
-                self.dismiss(animated: true, completion: nil)
-            }
-            self.activityIndicator.stopAnimating()
-        }
-    }
-    }
-
-extension RegisterVC: CLLocationManagerDelegate {
-
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
-        if let location = locations.last {
-            locationManager.stopUpdatingLocation()
-            let lat = location.coordinate.latitude
-            let lon = location.coordinate.longitude
-//            let distance = getDistanceInKmGivenLonLat(lat1: lat, lat2: lat+1.0, lon1: lon, lon2: lon+1.0)
-//            print("Distance to random place is\(distance)")
-        }
-
-        // Get user's current location name
-        if let lastLocation = locations.last {
-            let geocoder = CLGeocoder()
-
-            geocoder.reverseGeocodeLocation(lastLocation) { [weak self] (placemarks, error) in
-                if error == nil {
-                    if let firstLocation = placemarks?[0],
-                        let city = firstLocation.locality { // get the city name
-                        self?.cityName = city
-                        
-                        self?.locationManager.stopUpdatingLocation()
-                    }
+        func createFirestoreUser(user: User) {
+            // Step 1: Create document reference
+            let newUserRef = Firestore.firestore().collection("users").document(user.id)
+            
+            // Step 2: Create model data
+            let data = User.modelToData(user: user)
+            
+            // Step 3: Upload to Firestore.
+            newUserRef.setData(data) { (error) in
+                if let error = error {
+                    Auth.auth().handleFireAuthError(error: error, vc: self)
+                    debugPrint("Error signing in: \(error.localizedDescription)")
+                } else {
+                    self.dismiss(animated: true, completion: nil)
                 }
+                self.activityIndicator.stopAnimating()
             }
         }
     }
-    
-    func getDistanceInKmGivenLonLat(lat1: Double, lat2: Double, lon1: Double, lon2: Double) -> Double {
-        let R = 6371e3; // metres
-        let φ1 = lat1.toRadians();
-        let φ2 = lat2.toRadians();
-        let Δφ = (lat2-lat1).toRadians();
-        let Δλ = (lon2-lon1).toRadians();
-
-        let a = sin(Δφ/2) * sin(Δφ/2) +
-                cos(φ1) * cos(φ2) *
-                sin(Δλ/2) * sin(Δλ/2);
-        let c = 2 * atan2(sqrt(a), sqrt(1-a));
-
-        let d = R * c;
-        return d
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
-}
-
 

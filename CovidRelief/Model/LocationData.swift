@@ -1,37 +1,14 @@
 //
 //  LocationData.swift
-//  CovidRelief
+//  ZipcodeApi
 //
-//  Created by Hiya Shah on 3/29/20.
+//  Created by Hiya Shah on 3/30/20.
 //  Copyright © 2020 Hiya Shah. All rights reserved.
 //
 
 import Foundation
 
-import Foundation
-
-struct LocationData: Codable {
-    let name: String
-    let main: Main
-    let weather: [Weather]
-    let sys: SysCategory
-    let coord: Coordinate
-    
-}
-
-struct Main: Codable {
-    let temp: Double
-}
-
-struct Weather: Codable {
-    let id: Int
-}
-
-struct SysCategory: Codable {
-    let country: String
-}
-
-struct Coordinate: Codable {
-    let lon: Double
-    let lat: Double
+struct LocationData:  Codable {
+    let zip_code: String
+    let city: String
 }

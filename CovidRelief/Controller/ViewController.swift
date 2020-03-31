@@ -27,19 +27,18 @@ class ViewController: UIViewController {
     var selectedCategory: Category!
     var db : Firestore!
     var listener : ListenerRegistration!
-    var weatherManager =  LocationManager()
-    let locationManager = CLLocationManager()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation() //startupdatinglocation is for continuous
-        
-        
-        
-        weatherManager.delegate = self
+//        locationManager.delegate = self
+//        locationManager.requestWhenInUseAuthorization()
+//        locationManager.requestLocation() //startupdatinglocation is for continuous
+//        
+//        
+//        
+//        weatherManager.delegate = self
         
         setupCollectionView()
         setupInitialAnonymousUser()
@@ -66,15 +65,10 @@ class ViewController: UIViewController {
     }
 //
     
-//
-//
-//    func fetchDocument() {
-//        let docRef = db.coll
-//    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         setCategoriesListener()
-        locationManager.requestLocation()
         if let user = Auth.auth().currentUser , !user.isAnonymous {
             // We are logged in
             if let loginOutButton = loginOutButton {
@@ -162,7 +156,6 @@ class ViewController: UIViewController {
     
     @IBAction func userClicked(_ sender: Any) {
         performSegue(withIdentifier: Segues.toUserInfoVC, sender: self)
-        locationManager.requestLocation()
     }
     
     
@@ -272,80 +265,25 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
     }
 }
 
-func updateUserLocationData(city: String) {
-    print("View controller city is \(city)")
-    guard let authUser = Auth.auth().currentUser else {
-        return
-    }
-    var user = User.init(id: "", email: UserService.getEmail(), username: UserService.getUsername(), city: city)
-    let sameUserRef : DocumentReference!
-    sameUserRef = Firestore.firestore().collection("users").document(authUser.uid)
-    user.id = authUser.uid
-
-
-    let data = User.modelToData(user: user)
-    sameUserRef.setData(data, merge: true) { (error) in
-
-        if error != nil {
+//func updateUserLocationData(city: String) {
+//    print("View controller city is \(city)")
+//    guard let authUser = Auth.auth().currentUser else {
+//        return
+//    }
+//    var user = User.init(id: "", email: UserService.getEmail(), username: UserService.getUsername(), zipcode: city) //WRONG FIXXX
+//    let sameUserRef : DocumentReference!
+//    sameUserRef = Firestore.firestore().collection("users").document(authUser.uid)
+//    user.id = authUser.uid
+//
+//
+//    let data = User.modelToData(user: user)
+//    sameUserRef.setData(data, merge: true) { (error) in
+//
+//        if error != nil {
 //            simpleAlert(title: "Error", msg: "Unable to upload Firestore document.")
-            return
-        }
+//            return
+//        }
+//
+//    }
+//}
 
-    }
-}
-
-extension ViewController: LocationManagerDelegate {
-    func didUpdateWeather(_ weatherManager: LocationManager, weather: LocationModel) {
-        DispatchQueue.main.async {
-            
-            updateUserLocationData(city: weather.cityName)
-            print("did update weather")
-            UserService.user.city = weather.cityName
-            UserService.user.country = weather.countryName
-            UserService.user.lat = weather.latitude
-            UserService.user.lon = weather.longitude
-            
-        }
-        
-        
-    }
-    
-    func didFailWithError(error: Error) {
-        print(error)
-        print("did fail with error")
-    }
-    
-}
-
-extension ViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
-        if let location = locations.last {
-            locationManager.stopUpdatingLocation()
-            let lat = location.coordinate.latitude
-            let lon = location.coordinate.longitude
-            weatherManager.fetchLocation(latitude: lat, longitude: lon)
-            print("did fetch weather")
-        }
-    }
-    
-    func getDistanceInKmGivenLonLat(lat1: Double, lat2: Double, lon1: Double, lon2: Double) -> Double {
-        let R = 6371e3; // metres
-        let φ1 = lat1.toRadians();
-        let φ2 = lat2.toRadians();
-        let Δφ = (lat2-lat1).toRadians();
-        let Δλ = (lon2-lon1).toRadians();
-
-        let a = sin(Δφ/2) * sin(Δφ/2) +
-                cos(φ1) * cos(φ2) *
-                sin(Δλ/2) * sin(Δλ/2);
-        let c = 2 * atan2(sqrt(a), sqrt(1-a));
-
-        let d = R * c;
-        return d
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
-}

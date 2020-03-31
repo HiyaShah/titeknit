@@ -89,8 +89,8 @@ final class _UserService {
         return user.email
     }
     
-    func getCity() -> String {
-        return user.city
+    func getZip() -> String {
+        return user.zipcode
     }
     func getId() -> String {
         return user.id

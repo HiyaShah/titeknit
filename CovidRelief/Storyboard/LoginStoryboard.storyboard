@@ -236,7 +236,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IYI-XN-drN">
-                                <rect key="frame" x="20" y="128" width="374" height="337"/>
+                                <rect key="frame" x="20" y="128" width="374" height="397"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="r e g i s t e r" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2QG-g5-wgE">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="37"/>
@@ -263,10 +263,19 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="qdg-U0-RS4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yxq-gB-DUZ">
+                                        <rect key="frame" x="0.0" y="177" width="374" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Z2K-T0-vZX"/>
+                                            <constraint firstAttribute="height" constant="40" id="eDY-U0-Tth"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" textContentType="postal-code"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-MB-KNp">
-                                        <rect key="frame" x="0.0" y="177" width="374" height="40"/>
+                                        <rect key="frame" x="0.0" y="237" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="2eg-bh-Fi6"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="pDK-Fv-dnA"/>
@@ -275,7 +284,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vpu-mO-Cis">
-                                        <rect key="frame" x="0.0" y="237" width="374" height="40"/>
+                                        <rect key="frame" x="0.0" y="297" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="0eH-xW-80r"/>
                                             <constraint firstAttribute="height" constant="40" id="IP7-6i-c23"/>
@@ -285,7 +294,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXc-mF-MTR" customClass="RoundedButton" customModule="CovidRelief" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="297" width="374" height="40"/>
+                                        <rect key="frame" x="0.0" y="357" width="374" height="40"/>
                                         <color key="backgroundColor" red="0.2660732488" green="0.35294117650000001" blue="0.036812772280000003" alpha="0.60314105309999999" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="AIS-Cr-SDA"/>
@@ -301,17 +310,17 @@
                                 </subviews>
                             </stackView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ihv-Oh-yKf">
-                                <rect key="frame" x="188.5" y="477" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="537" width="37" height="37"/>
                             </activityIndicatorView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_check" translatesAutoresizingMaskIntoConstraints="NO" id="Mji-Is-pYf">
-                                <rect key="frame" x="356" y="310" width="30" height="30"/>
+                                <rect key="frame" x="356" y="370" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Etl-4S-pQ6"/>
                                     <constraint firstAttribute="width" constant="30" id="yPQ-hK-Bs8"/>
                                 </constraints>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_check" translatesAutoresizingMaskIntoConstraints="NO" id="UdI-P2-dHx">
-                                <rect key="frame" x="356" y="370" width="30" height="30"/>
+                                <rect key="frame" x="356" y="430" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OqH-Kq-Dto"/>
                                     <constraint firstAttribute="width" constant="30" id="PRR-hD-iQ4"/>
@@ -345,6 +354,7 @@
                         <outlet property="passCheckImg" destination="Mji-Is-pYf" id="ynA-jI-Nf1"/>
                         <outlet property="passwordTxt" destination="Xte-MB-KNp" id="NKr-Vg-A4p"/>
                         <outlet property="usernameTxt" destination="5jK-xo-6NV" id="Zbc-kr-T3G"/>
+                        <outlet property="zipcodeTxt" destination="yxq-gB-DUZ" id="2t2-rB-Vcb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8XK-8o-kXk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -1,23 +1,14 @@
 //
-//  CityModel.swift
-//  CovidRelief
+//  LocationModel.swift
+//  ZipcodeApi
 //
-//  Created by Hiya Shah on 3/29/20.
+//  Created by Hiya Shah on 3/30/20.
 //  Copyright © 2020 Hiya Shah. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct LocationModel {
-    let latitude: Double
-    let longitude: Double
+    let zipcode: String
     let cityName: String
-    let countryName: String
-
 }
-
-
-    
-    
-
-

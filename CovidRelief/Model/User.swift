@@ -12,38 +12,32 @@ struct User {
     var id: String
     var email: String
     var username: String
+    var zipcode: String
     var city: String
-    var country: String
-    var lat: Double
-    var lon: Double
 
 
     
     init(id: String = "",
          email: String = "",
          username: String = "",
-         city: String = "",
-         country: String = "",
-         lat: Double = 0.0,
-         lon: Double = 0.0) {
+         zipcode: String = "",
+         city: String = "") {
         
         self.id = id
         self.email = email
         self.username = username
+        self.zipcode = zipcode
         self.city = city
-        self.country = country
-        self.lat = lat
-        self.lon = lon
     }
     
     init(data: [String: Any]) {
         id = data["id"] as? String ?? ""
         email = data["email"] as? String ?? ""
         username = data["username"] as? String ?? ""
+        zipcode = data["zipcode"] as? String ?? ""
         city = data["city"] as? String ?? ""
-        country = data["country"] as? String ?? ""
-        lat = data["lat"] as? Double ?? 0.0
-        lon = data["lon"] as? Double ?? 0.0
+        
+        
     }
     
     static func modelToData(user: User) -> [String: Any] {
@@ -52,6 +46,7 @@ struct User {
             "id" : user.id,
             "email" : user.email,
             "username" : user.username,
+            "zipcode" : user.zipcode,
             "city" : user.city
         ]
         
