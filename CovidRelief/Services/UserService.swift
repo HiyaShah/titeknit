@@ -16,6 +16,7 @@ final class _UserService {
     
     // Variables
     var user = User()
+    var listingCount = Int()
     var favorites = [Listing]()
     let auth = Auth.auth()
     let db = Firestore.firestore()
@@ -108,6 +109,7 @@ final class _UserService {
         favsListener?.remove()
         favsListener = nil
         user = User()
+        listingCount = Int()
         favorites.removeAll()
     }
 }

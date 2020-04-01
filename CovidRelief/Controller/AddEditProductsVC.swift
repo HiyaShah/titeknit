@@ -15,6 +15,8 @@ class AddEditProductsVC: UIViewController {
 
     @IBOutlet weak var listingName: UITextField!
     
+    @IBOutlet weak var stock: UITextField!
+    
     @IBOutlet weak var listingDescription: UITextView!
     
     @IBOutlet weak var listingImgView: RoundedImageView!
@@ -26,6 +28,7 @@ class AddEditProductsVC: UIViewController {
         var listingToEdit : Listing?
         
         var name = ""
+        var stockCount = 0
         var listingdescription = ""
         
         override func viewDidLoad() {
@@ -61,13 +64,15 @@ class AddEditProductsVC: UIViewController {
         func uploadImageThenDocument() {
             guard let image = listingImgView.image ,
             let name = listingName.text , name.isNotEmpty ,
-            let description = listingDescription.text , description.isNotEmpty
+            let description = listingDescription.text , description.isNotEmpty,
+            let stock = stock.text , stock.isNotEmpty
             else {
                     simpleAlert(title: "Missing Fields", msg: "Please fill out all required fields.")
                     return
             }
             
             self.name = name
+            self.stockCount = Int(stock) ?? 0
             self.listingdescription = description
             
 //            activityIndicator.startAnimating()
@@ -109,7 +114,7 @@ class AddEditProductsVC: UIViewController {
         func uploadDocument(url: String) {
             print("upload doc clicked")
             var docRef : DocumentReference!
-            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, productDescription: listingdescription, imgUrl: url)
+            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, productDescription: listingdescription, imgUrl: url, stock: stockCount, username: UserService.user.username, email: UserService.user.email, city: UserService.user.city)
             print("made listing")
             if let listingToEdit = listingToEdit {
                 // We are editing a product

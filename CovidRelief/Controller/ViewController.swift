@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var loginOutButton: UIBarButtonItem!
     
+    @IBOutlet weak var preferencesBtn: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -77,12 +78,18 @@ class ViewController: UIViewController {
             if let favoriteBtn = favoriteBtn {
                 favoriteBtn.isEnabled = true
             }
+            
+            if let preferences = preferencesBtn {
+                preferences.isEnabled = true
+            }
+            
             if UserService.userListener == nil {
                 UserService.getCurrentUser()
             }
         } else {
             loginOutButton.title = "Login"
             favoriteBtn.isEnabled = false
+            preferencesBtn.isEnabled = false
         }
     }
     

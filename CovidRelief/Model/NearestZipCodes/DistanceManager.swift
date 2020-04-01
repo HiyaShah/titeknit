@@ -1,27 +1,27 @@
 //
-//  LocationManager.swift
+//  DistanceManager.swift
 //  ZipcodeApi
 //
-//  Created by Hiya Shah on 3/30/20.
+//  Created by Hiya Shah on 3/31/20.
 //  Copyright © 2020 Hiya Shah. All rights reserved.
 //
 
 import Foundation
 
-protocol LocationManagerDelegate {
-    func didUpdateLocation(_ locationManager: LocationManager, location: LocationModel)
+protocol DistanceManagerDelegate {
+    func didUpdateDistance(_ locationManager: DistanceManager, location: DistanceModel)
     func didFailWithError(error: Error)
 }
 
-struct LocationManager {
-    let locationURL =
+struct DistanceManager {
+    let distanceURL =
         //must change to https from http
-    "https://www.zipcodeapi.com/rest/lm9IzBEU6VprWrk7SEO9OAmVMnF1HJlCAbrqQqtH0zEn2nsQEiCCv7IFLL1sJtqY/info.json"
+    "https://www.zipcodeapi.com/rest/s6lAYzFyT525ueMZXgT8AJFB2UmYxUNnu18TGTt4DBisP0gf03VXuwi2SneZ1DB2/radius.json/94566/10/mile"
     
-    var delegate: LocationManagerDelegate?
+    var delegate: DistanceManagerDelegate?
     
-    func fetchCity(zipcode: String) {
-        let urlString = "\(locationURL)/\(zipcode)/degrees"
+    func fetchNearest(zipcode: String, distance: Double) {
+        let urlString = "\(distanceURL)/\(zipcode)/\(distance)/mile"
         performRequest(with: urlString)
     }
     
@@ -38,7 +38,7 @@ struct LocationManager {
                 }
                 if let safeData = data {
                     if let location = self.parseJSON(safeData) {
-                        self.delegate?.didUpdateLocation(self, location: location)
+                        self.delegate?.didUpdateDistance(self, location: location)
                     }
                 }
             }
@@ -48,15 +48,17 @@ struct LocationManager {
         }
     }
     
-    func parseJSON(_ locationData: Data) -> LocationModel? {
+    func parseJSON(_ locationData: Data) -> DistanceModel? {
         let decoder = JSONDecoder()
         do {
-            let decodedData = try decoder.decode(LocationData.self, from: locationData)
-            let city = decodedData.city
-            let zipcode = decodedData.zip_code
-            
-            let weather = LocationModel(zipcode: zipcode, cityName: city)
-            return weather
+            let decodedData = try decoder.decode(DistanceData.self, from: locationData)
+            let zipcodes = decodedData.zip_codes
+            var nearbyZipCodes: [String] = []
+            for n in 1...zipcodes.count{
+                nearbyZipCodes.append(zipcodes[n-1].zip_code)
+            }
+            let location = DistanceModel(fullListOfZipCodes: zipcodes, nearbyZips: nearbyZipCodes)
+            return location
             
         } catch {
             delegate?.didFailWithError(error: error)
@@ -64,5 +66,3 @@ struct LocationManager {
         }
     }
 }
-
-

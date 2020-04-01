@@ -145,7 +145,7 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(listings.count)
+        UserService.listingCount = listings.count
         return listings.count
         
     }

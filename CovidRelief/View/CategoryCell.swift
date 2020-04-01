@@ -18,12 +18,15 @@ class CategoryCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         addShadowEffect()
     }
     
     func configureCell(category: Category) {
         categoryLbl.text = category.name
-        categoryCount.text = String(category.count)
+        categoryCount.text = String(UserService.listingCount)
+        //only writing the count after seguing to the products vc ah
+        print(UserService.listingCount)
         
     }
     

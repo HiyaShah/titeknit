@@ -32,7 +32,7 @@ class ListingCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     func configureCell(listing: Listing, delegate: ListingCellDelegate) {
@@ -41,7 +41,11 @@ class ListingCell: UITableViewCell {
         self.delegate = delegate
         listingTitle.text = listing.name
         stockCount.text = String(listing.stock)
-//        usernameLbl.text =
+        listingCity.text = listing.city
+        usernameLbl.text = listing.username
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = #colorLiteral(red: 0.3418669701, green: 0.3526337147, blue: 0.5360661149, alpha: 1)
+
         
         
         if let url = URL(string: listing.imgUrl){
@@ -60,6 +64,14 @@ class ListingCell: UITableViewCell {
     
     
     @IBAction func messageBtnClicked(_ sender: Any) {
+
+        if let url = URL(string: "mailto:\(UserService.user.email)") {
+          if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+          } else {
+            UIApplication.shared.openURL(url)
+          }
+        }
     }
     
     @IBAction func favoriteClicked(_ sender: Any) {

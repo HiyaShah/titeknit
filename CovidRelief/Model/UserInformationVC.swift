@@ -12,10 +12,10 @@ import MapKit
 import Firebase
 import FirebaseFirestore
 
-class UserInformationVC: UIViewController, LocationManagerDelegate {
+class UserInformationVC: UIViewController {
     
     var locationManager =  LocationManager()
-
+    var distanceManager = DistanceManager()
     
     @IBOutlet weak var hometownLbl: UILabel!
     
@@ -25,6 +25,9 @@ class UserInformationVC: UIViewController, LocationManagerDelegate {
     
     @IBOutlet weak var zipcodeTxt: UITextField!
     
+    @IBOutlet weak var radiusSlider: UISlider!
+    @IBOutlet weak var radiusLbl: UILabel!
+    
     
     
     override func viewDidLoad() {
@@ -33,29 +36,12 @@ class UserInformationVC: UIViewController, LocationManagerDelegate {
         emailTxt.text = UserService.user.email
         zipcodeTxt.text = UserService.user.zipcode
         hometownLbl.text = UserService.user.city
-//        print("\(username) and \(email) and \(zipcode)")
+        let formattedCurrentVal = String(format: "%.1f", UserService.user.areaRadius)
+        radiusLbl.text = String("\(formattedCurrentVal) miles")
+        radiusSlider.setValue(Float(UserService.user.areaRadius), animated: true)
         
-        
-//        guard let authUser = Auth.auth().currentUser else {
-//            return
-//        }
-//        let docRef = Firestore.firestore().collection("users").document(authUser.uid)
-//
-//        docRef.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                self.usernameTxt.text = String(describing: document.get("username"))
-//
-//                // firstSentence == "Hi there!"
-//                self.emailTxt.text = document.get("email").debugDescription
-//                self.cityTxt.text = document.get("zipcode").debugDescription
-//                print("Document data: \(self.usernameTxt.text)")
-//
-//            } else {
-//                print("Document does not exist")
-//            }
-//        }
-
        locationManager.delegate = self
+       distanceManager.delegate = self
        zipcodeTxt.delegate = self
         
         
@@ -63,10 +49,19 @@ class UserInformationVC: UIViewController, LocationManagerDelegate {
         
     }
     
+    @IBAction func radiusSlid(_ sender: UISlider) {
+        let currentValue = sender.value
+        print("Slider changing to \(currentValue) ?")
+        let formattedCurrentValue = String(format: "%.1f", currentValue)
+        radiusLbl.text = "\(formattedCurrentValue) miles"
+        
+    }
+    
     @IBAction func saveChangesPressed(_ sender: Any) {
         guard let email = emailTxt.text , email.isNotEmpty ,
             let username = usernameTxt.text , username.isNotEmpty ,
-            let zipcode = zipcodeTxt.text , zipcode.isNotEmpty else {
+            let zipcode = zipcodeTxt.text , zipcode.isNotEmpty,
+            let areaRadius = Optional(radiusSlider.value) else {
                 simpleAlert(title: "Error", msg: "Please fill out all fields.")
                 return
                 
@@ -75,17 +70,18 @@ class UserInformationVC: UIViewController, LocationManagerDelegate {
         usernameTxt.endEditing(true)
         emailTxt.endEditing(true)
         let hometown = hometownLbl.text ?? ""
-        updateData(email: email, username: username, zipcode: zipcode, city: hometown)
+        Preferences.radius = Double(radiusSlider.value)
+        updateData(email: email, username: username, zipcode: zipcode, city: hometown, areaRadius: Double(areaRadius))
         
     }
     
-    func updateData(email: String, username: String, zipcode: String, city: String) {
+    func updateData(email: String, username: String, zipcode: String, city: String, areaRadius: Double) {
         guard let authUser = Auth.auth().currentUser else {
             return
         }
         print("zip i am putting in is \(zipcode)")
-        print("city in UIVC is:")
-        var user = User.init(id: "", email: email, username: username, zipcode: zipcode, city: city)
+        print("arearadius is: \(areaRadius)")
+        var user = User.init(id: "", email: email, username: username, zipcode: zipcode, city: city, areaRadius: areaRadius)
         let sameUserRef : DocumentReference!
         sameUserRef = Firestore.firestore().collection("users").document(authUser.uid)
         user.id = authUser.uid
@@ -109,7 +105,14 @@ class UserInformationVC: UIViewController, LocationManagerDelegate {
 
 }
 
-extension UserInformationVC: UITextFieldDelegate {
+extension UserInformationVC: UITextFieldDelegate, LocationManagerDelegate, DistanceManagerDelegate {
+    
+    func didUpdateDistance(_ locationManager: DistanceManager, location: DistanceModel) {
+        DispatchQueue.main.async {
+            print(location.nearbyZips)
+        }
+    }
+    
     
     func didUpdateLocation(_ locationManager: LocationManager, location: LocationModel) {
         DispatchQueue.main.async {
@@ -131,6 +134,7 @@ extension UserInformationVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let zip = zipcodeTxt.text {
             locationManager.fetchCity(zipcode: zip)
+            distanceManager.fetchNearest(zipcode: zipcodeTxt.text ?? UserService.user.zipcode, distance: Double(radiusSlider.value))
         }
 
     }

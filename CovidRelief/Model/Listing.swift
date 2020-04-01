@@ -25,6 +25,9 @@ struct Listing {
     var listingDescription: String
     var timeStamp: Timestamp
     var stock: Int
+    var username: String
+    var email: String
+    var city: String
 
     init(
         name: String,
@@ -35,7 +38,10 @@ struct Listing {
         productDescription: String,
         imgUrl: String,
         timeStamp: Timestamp = Timestamp(),
-        stock: Int = 0
+        stock: Int,
+        username: String,
+        email: String,
+        city: String
         ) {
         self.name = name
         self.id = id
@@ -45,6 +51,9 @@ struct Listing {
         self.imgUrl = imgUrl
         self.timeStamp = timeStamp
         self.stock = stock
+        self.city = city
+        self.username = username
+        self.email = email
     }
     
     init(data: [String: Any]) {
@@ -56,19 +65,25 @@ struct Listing {
         imgUrl = data["imgUrl"] as? String ?? ""
         timeStamp = data["timeStamp"] as? Timestamp ?? Timestamp()
         stock = data["stock"] as? Int ?? 0
+        city = data["city"] as? String ?? ""
+        username = data["username"] as? String ?? ""
+        email = data["email"] as? String ?? ""
     }
     
     static func modelToData(listing: Listing) -> [String: Any] {
         
         let data : [String: Any] = [
             "name" : listing.name,
+            "username": listing.username,
+            "email": listing.email,
             "id" : listing.id,
             "category" : listing.category,
             "productDescription" : listing.listingDescription,
             "isActive": listing.isActive,
             "imgUrl" : listing.imgUrl,
             "timeStamp" : listing.timeStamp,
-            "stock" : listing.stock
+            "stock" : listing.stock,
+            "city": listing.city
         ]
         
         return data

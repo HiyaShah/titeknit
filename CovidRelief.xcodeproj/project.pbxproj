@@ -37,6 +37,10 @@
 		71BBC58F24316A9E00A0A882 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BBC58E24316A9E00A0A882 /* LocationModel.swift */; };
 		71BBC59124316BBF00A0A882 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BBC59024316BBF00A0A882 /* LocationData.swift */; };
 		71BBC59324316BD600A0A882 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BBC59224316BD600A0A882 /* LocationManager.swift */; };
+		71E318552434014B0067DC0F /* DistanceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E318542434014B0067DC0F /* DistanceData.swift */; };
+		71E318572434016C0067DC0F /* DistanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E318562434016C0067DC0F /* DistanceModel.swift */; };
+		71E31859243401770067DC0F /* DistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E31858243401770067DC0F /* DistanceManager.swift */; };
+		71E3185B243401920067DC0F /* SharedInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E3185A243401920067DC0F /* SharedInformation.swift */; };
 		989E7085405828E402B22577 /* Pods_CovidRelief.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D770321858315899DA5A33 /* Pods_CovidRelief.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +79,10 @@
 		71BBC58E24316A9E00A0A882 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		71BBC59024316BBF00A0A882 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		71BBC59224316BD600A0A882 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		71E318542434014B0067DC0F /* DistanceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceData.swift; sourceTree = "<group>"; };
+		71E318562434016C0067DC0F /* DistanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceModel.swift; sourceTree = "<group>"; };
+		71E31858243401770067DC0F /* DistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceManager.swift; sourceTree = "<group>"; };
+		71E3185A243401920067DC0F /* SharedInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformation.swift; sourceTree = "<group>"; };
 		8B86D1A927D459BD7307C5CC /* Pods-CovidRelief.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovidRelief.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,12 +125,11 @@
 		71A314B12426F2660055CCEA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				71E31853243401210067DC0F /* NearestZipCodes */,
+				71E31852243400EF0067DC0F /* ZipcodeToLocation */,
 				71A314DD24295B530055CCEA /* Category.swift */,
 				71A2BAA02429AFB8003B65C0 /* Listing.swift */,
 				71BBC5882430065300A0A882 /* User.swift */,
-				71BBC58E24316A9E00A0A882 /* LocationModel.swift */,
-				71BBC59024316BBF00A0A882 /* LocationData.swift */,
-				71BBC59224316BD600A0A882 /* LocationManager.swift */,
 				71BBC58C243139CB00A0A882 /* UserInformationVC.swift */,
 			);
 			path = Model;
@@ -144,6 +151,7 @@
 				71A314CA2427ECEB0055CCEA /* Extensions.swift */,
 				71A314CE2428234C0055CCEA /* Constants.swift */,
 				71A314DB2429560B0055CCEA /* Firebase+Utils.swift */,
+				71E3185A243401920067DC0F /* SharedInformation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -200,6 +208,26 @@
 				71BBC586242EED3300A0A882 /* UserService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		71E31852243400EF0067DC0F /* ZipcodeToLocation */ = {
+			isa = PBXGroup;
+			children = (
+				71BBC59024316BBF00A0A882 /* LocationData.swift */,
+				71BBC58E24316A9E00A0A882 /* LocationModel.swift */,
+				71BBC59224316BD600A0A882 /* LocationManager.swift */,
+			);
+			path = ZipcodeToLocation;
+			sourceTree = "<group>";
+		};
+		71E31853243401210067DC0F /* NearestZipCodes */ = {
+			isa = PBXGroup;
+			children = (
+				71E318542434014B0067DC0F /* DistanceData.swift */,
+				71E318562434016C0067DC0F /* DistanceModel.swift */,
+				71E31858243401770067DC0F /* DistanceManager.swift */,
+			);
+			path = NearestZipCodes;
 			sourceTree = "<group>";
 		};
 		84649330C2F620D149E76C2E /* Frameworks */ = {
@@ -356,11 +384,14 @@
 			files = (
 				71BBC58F24316A9E00A0A882 /* LocationModel.swift in Sources */,
 				71A314DC2429560B0055CCEA /* Firebase+Utils.swift in Sources */,
+				71E318572434016C0067DC0F /* DistanceModel.swift in Sources */,
 				71A314CB2427ECEB0055CCEA /* Extensions.swift in Sources */,
 				71B27ACB2426B83E00B2C9FA /* AppDelegate.swift in Sources */,
 				71BBC58D243139CB00A0A882 /* UserInformationVC.swift in Sources */,
 				71A314C52427E7510055CCEA /* LoginVC.swift in Sources */,
+				71E318552434014B0067DC0F /* DistanceData.swift in Sources */,
 				71A314D1242825550055CCEA /* RoundedViews.swift in Sources */,
+				71E31859243401770067DC0F /* DistanceManager.swift in Sources */,
 				71A314CF2428234C0055CCEA /* Constants.swift in Sources */,
 				71BBC58B24301FD600A0A882 /* AddEditProductsVC.swift in Sources */,
 				71A314D924287F480055CCEA /* ForgotPasswordVC.swift in Sources */,
@@ -374,6 +405,7 @@
 				71BBC587242EED3300A0A882 /* UserService.swift in Sources */,
 				71BBC581242EC2B400A0A882 /* ListingCell.swift in Sources */,
 				71BBC59124316BBF00A0A882 /* LocationData.swift in Sources */,
+				71E3185B243401920067DC0F /* SharedInformation.swift in Sources */,
 				71A2BA9F2429AF3B003B65C0 /* ListingsVC.swift in Sources */,
 				71A314E124295E9A0055CCEA /* CategoryCell.swift in Sources */,
 			);
