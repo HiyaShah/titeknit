@@ -14,6 +14,8 @@ import MapKit
 
 class ViewController: UIViewController {
 
+    var locationManager =  LocationManager()
+    var distanceManager = DistanceManager()
     
     @IBOutlet weak var loginOutButton: UIBarButtonItem!
     
@@ -44,7 +46,12 @@ class ViewController: UIViewController {
         setupCollectionView()
         setupInitialAnonymousUser()
         
+        locationManager.delegate = self
+        distanceManager.delegate = self
         
+//        locationManager.fetchCity(zipcode: UserService.user.zipcode)
+        print("Littlehiyas zip is \(UserService.user.zipcode)")
+//        distanceManager.fetchNearest(zipcode: UserService.user.zipcode, distance: UserService.user.areaRadius)
         
 
         
@@ -151,6 +158,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func favoritesClicked(_ sender: Any) {
+        if UserService.isGuest {
+            self.simpleAlert(title: "Hello Neighbor!", msg: "Please create an account to access your favorite listings and take advantage of all our features.")
+            return
+        }
         performSegue(withIdentifier: Segues.toFavorites, sender: self)
     }
     
@@ -162,6 +173,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func userClicked(_ sender: Any) {
+        if UserService.isGuest {
+            self.simpleAlert(title: "Hello Neighbor!", msg: "Please create a free account to set your preferences and take advantage of all our features.")
+            return
+        }
         performSegue(withIdentifier: Segues.toUserInfoVC, sender: self)
     }
     
@@ -293,4 +308,29 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
 //
 //    }
 //}
+
+extension ViewController: LocationManagerDelegate, DistanceManagerDelegate {
+
+    func didUpdateDistance(_ locationManager: DistanceManager, location: DistanceModel) {
+        DispatchQueue.main.async {
+            print(location.nearbyZips)
+            UserService.user.nearestZipsToHome = location.nearbyZips
+        }
+    }
+
+
+    func didUpdateLocation(_ locationManager: LocationManager, location: LocationModel) {
+        DispatchQueue.main.async {
+            print("ViewController got city of \(location.cityName)")
+            
+            
+            
+        }
+    }
+    func didFailWithError(error: Error) {
+        print(error)
+        return
+    }
+}
+
 

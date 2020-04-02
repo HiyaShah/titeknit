@@ -28,6 +28,7 @@ struct Listing {
     var username: String
     var email: String
     var city: String
+    var zip: String
 
     init(
         name: String,
@@ -41,7 +42,8 @@ struct Listing {
         stock: Int,
         username: String,
         email: String,
-        city: String
+        city: String,
+        zip: String
         ) {
         self.name = name
         self.id = id
@@ -54,6 +56,7 @@ struct Listing {
         self.city = city
         self.username = username
         self.email = email
+        self.zip = zip
     }
     
     init(data: [String: Any]) {
@@ -68,6 +71,7 @@ struct Listing {
         city = data["city"] as? String ?? ""
         username = data["username"] as? String ?? ""
         email = data["email"] as? String ?? ""
+        zip = data["zip"] as? String ?? ""
     }
     
     static func modelToData(listing: Listing) -> [String: Any] {
@@ -83,10 +87,15 @@ struct Listing {
             "imgUrl" : listing.imgUrl,
             "timeStamp" : listing.timeStamp,
             "stock" : listing.stock,
-            "city": listing.city
+            "city": listing.city,
+            "zip": listing.zip
         ]
         
         return data
+    }
+    
+    func getZip() -> String {
+        return self.zip
     }
 }
 

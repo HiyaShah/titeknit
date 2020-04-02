@@ -11,6 +11,7 @@ import Kingfisher
 
 protocol ListingCellDelegate : class {
     func listingFavorited(listing: Listing)
+    func listingNearest(listing: Listing)
 }
 
 class ListingCell: UITableViewCell {
@@ -54,6 +55,9 @@ class ListingCell: UITableViewCell {
             listingImg.kf.indicatorType = .activity
             listingImg.kf.setImage(with: url, placeholder: placeholder, options: options)
         }
+//        if(UserService.user.nearestZipsToHome.contains(listing.getZip())){
+//            delegate.listingNearest(listing: listing)
+//        }
         
         if UserService.favorites.contains(listing) {
             favoriteBtn.setImage(UIImage(named: AppImages.FilledStar), for: .normal)

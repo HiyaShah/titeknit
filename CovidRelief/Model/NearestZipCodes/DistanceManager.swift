@@ -16,12 +16,13 @@ protocol DistanceManagerDelegate {
 struct DistanceManager {
     let distanceURL =
         //must change to https from http
-    "https://www.zipcodeapi.com/rest/s6lAYzFyT525ueMZXgT8AJFB2UmYxUNnu18TGTt4DBisP0gf03VXuwi2SneZ1DB2/radius.json/94566/10/mile"
+    "https://www.zipcodeapi.com/rest/s6lAYzFyT525ueMZXgT8AJFB2UmYxUNnu18TGTt4DBisP0gf03VXuwi2SneZ1DB2/radius.json"
     
     var delegate: DistanceManagerDelegate?
     
     func fetchNearest(zipcode: String, distance: Double) {
         let urlString = "\(distanceURL)/\(zipcode)/\(distance)/mile"
+        print(urlString)
         performRequest(with: urlString)
     }
     
@@ -54,8 +55,10 @@ struct DistanceManager {
             let decodedData = try decoder.decode(DistanceData.self, from: locationData)
             let zipcodes = decodedData.zip_codes
             var nearbyZipCodes: [String] = []
-            for n in 1...zipcodes.count{
-                nearbyZipCodes.append(zipcodes[n-1].zip_code)
+            if zipcodes.count > 0 {
+                for n in 0...(zipcodes.count-1){
+                    nearbyZipCodes.append(zipcodes[n].zip_code)
+                }
             }
             let location = DistanceModel(fullListOfZipCodes: zipcodes, nearbyZips: nearbyZipCodes)
             return location

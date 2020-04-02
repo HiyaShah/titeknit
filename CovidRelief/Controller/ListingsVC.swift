@@ -13,6 +13,8 @@ class ListingsVC: UIViewController, ListingCellDelegate {
 
     //outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var nearestBarBtn: UIBarButtonItem!
+    @IBOutlet weak var newProductBarBtn: UIBarButtonItem!
     
     //variables
     var listings = [Listing]()
@@ -20,6 +22,7 @@ class ListingsVC: UIViewController, ListingCellDelegate {
     var listener: ListenerRegistration!
     var db : Firestore!
     var showFavorites = false
+    var showNearest = false
     
     var selectedProduct : Listing?
     
@@ -27,10 +30,18 @@ class ListingsVC: UIViewController, ListingCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newProductBtn = UIBarButtonItem(title: "+ Product", style: .plain, target: self, action: #selector(newProduct))
+        UserService.nearest = []
+//        let newProductBtn = UIBarButtonItem(title: "+ Product", style: .plain, target: self, action: #selector(newProduct))
         //admin stuff
+        if(showFavorites==true) {
+            newProductBarBtn.isEnabled = false
+            nearestBarBtn.isEnabled = false
+        } else {
+            newProductBarBtn.isEnabled = true
+            nearestBarBtn.isEnabled = true
+        }
         
-        navigationItem.setRightBarButtonItems([newProductBtn], animated: false)
+        navigationItem.setRightBarButtonItems([newProductBarBtn, nearestBarBtn], animated: false)
         
         
         
@@ -46,9 +57,13 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         
     }
     
-    @objc func newProduct() {
+    @IBAction func newProductClicked(_ sender: Any) {
         performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
+
     }
+//    @objc func newProduct() {
+//        performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
+//    }
     
     
 
@@ -67,6 +82,10 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         var ref: Query!
         if showFavorites {
             ref = db.collection("users").document(UserService.user.id).collection("favorites")
+//        } else if showNearest {
+//        print("setupquerywithshownearest")
+//        ref = db.collection("users").document(UserService.user.id).collection("nearestListings")
+//        }
         } else {
             ref = db.listings(category: category.id)
         }
@@ -98,7 +117,7 @@ class ListingsVC: UIViewController, ListingCellDelegate {
     func listingFavorited(listing: Listing) {
         print("listing favorited")
         if UserService.isGuest {
-            self.simpleAlert(title: "Hi friend!", msg: "This is a user only feature, please create a free user to take advantage of all our features.")
+            self.simpleAlert(title: "Hello Neighbor!", msg: "Please create a free account to favorite this account and take advantage of all our features.")
             return
         }
         
@@ -107,6 +126,42 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
+    func listingNearest(listing: Listing) {
+//        print("listing favorited")
+//        if UserService.isGuest {
+//            self.simpleAlert(title: "Hi friend!", msg: "This is a user only feature, please create a free user to take advantage of all our features.")
+//            return
+//        }
+////        if(self.)
+        print("listingNearestCalled")
+        UserService.nearestSelected(listing: listing)
+        guard let index = listings.firstIndex(of: listing) else { return }
+        print(UserService.nearest)
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
+    @IBAction func nearestBtnPressed(_ sender: Any) {
+        print("shownearest = true")
+        self.showNearest = true
+        print(UserService.user.nearestZipsToHome)
+        UserService.nearest = []
+        var consToMinus = 1;
+        for n in 1...listings.count {
+            if UserService.user.nearestZipsToHome.contains(listings[n-consToMinus].getZip())   {
+                UserService.nearestSelected(listing: listings[n-consToMinus])
+                print("adding in \(listings[n-consToMinus])")
+            } else {
+                print("document \(listings[n-consToMinus]) removed")
+                listings.remove(at: n-consToMinus)
+                tableView.deleteRows(at: [IndexPath(row: n-consToMinus, section: 0)], with: .left)
+                
+                consToMinus = consToMinus + 1
+                
+            }
+        }
+        print(UserService.nearest)
+        nearestBarBtn.isEnabled = false
+    }
     
     
 
@@ -141,6 +196,7 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
         let oldIndex = Int(change.oldIndex)
         listings.remove(at: oldIndex)
         tableView.deleteRows(at: [IndexPath(row: oldIndex, section: 0)], with: .left)
+        print("document (listing) removed")
     }
     
     

@@ -16,19 +16,22 @@ struct Category {
     var isActive: Bool = true
     var timeStamp: Timestamp
     var count: Int = 0 //add to it everytime document created to count it
-
+    var listingNamesSupported: [String]
+    
     init(
             name: String,
             id: String,
             count: Int,
             isActive: Bool = true,
-            timeStamp: Timestamp) {
+            timeStamp: Timestamp,
+            listingNamesSupported: [String]) {
             
             self.name = name
             self.id = id
             self.count = count
             self.isActive = isActive
             self.timeStamp = timeStamp
+            self.listingNamesSupported = listingNamesSupported
         }
         
         init(data: [String: Any]) {
@@ -37,6 +40,7 @@ struct Category {
             self.count = data["count"] as? Int ?? 0
             self.isActive = data["isActive"] as? Bool ?? true
             self.timeStamp = data["timeStamp"] as? Timestamp ?? Timestamp()
+            self.listingNamesSupported = data["listingNamesSupported"] as? [String] ?? ["Other"]
         }
         
         static func modelToData(category: Category) -> [String: Any] {
@@ -45,7 +49,8 @@ struct Category {
                 "id" : category.id,
                 "count" : category.count,
                 "isActive" : category.isActive,
-                "timeStamp" : category.timeStamp
+                "timeStamp" : category.timeStamp,
+                "listingNamesSupported": category.listingNamesSupported
             ]
             
             return data

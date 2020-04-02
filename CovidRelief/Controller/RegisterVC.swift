@@ -100,7 +100,8 @@ class RegisterVC: UIViewController {
                 return
             }
             guard let firUser = result?.user else { return }
-            let user = User.init(id: firUser.uid, email: email, username: username, zipcode: zipcode, city: "Pleasanton")
+            let user = User.init(id: firUser.uid, email: email, username: username, zipcode: zipcode, city: "")
+            print("RegisterVC found littlehiya zip of \(UserService.user.zipcode)")
             // Upload to Firestore
             self.createFirestoreUser(user: user)
             self.activityIndicator.stopAnimating()

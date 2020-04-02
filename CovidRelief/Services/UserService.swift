@@ -18,10 +18,13 @@ final class _UserService {
     var user = User()
     var listingCount = Int()
     var favorites = [Listing]()
+    var nearest = [Listing]()
+    
     let auth = Auth.auth()
     let db = Firestore.firestore()
     var userListener : ListenerRegistration? = nil
     var favsListener : ListenerRegistration? = nil
+    var nearestListener: ListenerRegistration? = nil
     
     var isGuest : Bool {
         
@@ -63,6 +66,20 @@ final class _UserService {
                 self.favorites.append(favorite)
             })
         })
+        
+        let nearestListingsRef = userRef.collection("nearestListings")
+        nearestListener = nearestListingsRef.addSnapshotListener({ (snap, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            
+            snap?.documents.forEach({ (document) in
+                let nearListing = Listing.init(data: document.data())
+                self.nearest.append(nearListing)
+            })
+        })
+        
     }
     
     func favoriteSelected(listing: Listing) {
@@ -78,6 +95,18 @@ final class _UserService {
             favorites.append(listing)
             let data = Listing.modelToData(listing: listing)
             favsRef.document(listing.id).setData(data)
+        }
+    }
+    
+    func nearestSelected(listing: Listing) {
+        print("nearestListings in the making")
+        let nearestListingsRef = Firestore.firestore().collection("users").document(user.id).collection("nearestListings")
+        print("nearestlistingsRef made")
+        if !nearest.contains(listing) {
+            // Add as a nearest listing.
+            nearest.append(listing)
+            let data = Listing.modelToData(listing: listing)
+            nearestListingsRef.document(listing.id).setData(data)
         }
     }
 
@@ -108,9 +137,11 @@ final class _UserService {
         userListener = nil
         favsListener?.remove()
         favsListener = nil
+        nearestListener?.remove()
+        nearestListener = nil
         user = User()
-        listingCount = Int()
         favorites.removeAll()
+        nearest.removeAll()
     }
 }
 

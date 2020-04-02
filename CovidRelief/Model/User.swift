@@ -15,6 +15,7 @@ struct User {
     var zipcode: String
     var city: String
     var areaRadius: Double
+    var nearestZipsToHome: [String]
 
 
     
@@ -23,7 +24,8 @@ struct User {
          username: String = "",
          zipcode: String = "",
          city: String = "",
-         areaRadius: Double = Preferences.radius) {
+         areaRadius: Double = Preferences.radius,
+         nearestZipsToHome: [String] = [""]) {
         
         self.id = id
         self.email = email
@@ -31,6 +33,7 @@ struct User {
         self.zipcode = zipcode
         self.city = city
         self.areaRadius = areaRadius
+        self.nearestZipsToHome = nearestZipsToHome
     }
     
     init(data: [String: Any]) {
@@ -40,6 +43,7 @@ struct User {
         zipcode = data["zipcode"] as? String ?? ""
         city = data["city"] as? String ?? ""
         areaRadius = data["areaRadius"] as? Double ?? Preferences.radius
+        nearestZipsToHome = data["nearestZipsToHome"] as? [String] ?? [""]
         
         
     }
@@ -52,7 +56,8 @@ struct User {
             "username" : user.username,
             "zipcode" : user.zipcode,
             "city" : user.city,
-            "areaRadius": user.areaRadius
+            "areaRadius": user.areaRadius,
+            "nearestZipsToHome": user.nearestZipsToHome
         ]
         
         return data

@@ -11,7 +11,9 @@ import FirebaseStorage
 import FirebaseFirestore
 
 
-class AddEditProductsVC: UIViewController {
+class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    
 
     @IBOutlet weak var listingName: UITextField!
     
@@ -22,6 +24,10 @@ class AddEditProductsVC: UIViewController {
     @IBOutlet weak var listingImgView: RoundedImageView!
     
     @IBOutlet weak var addBtn: RoundedButton!
+    
+    @IBOutlet weak var listingTypePickerView: UIPickerView!
+    
+    
     
     //variables
         var adminSelectedCategory : Category!
@@ -50,6 +56,9 @@ class AddEditProductsVC: UIViewController {
                     listingImgView.kf.setImage(with: url)
                 }
             }
+            
+            listingTypePickerView.dataSource = self
+            listingTypePickerView.delegate = self
         }
         
         @objc func imgTapped() {
@@ -64,7 +73,7 @@ class AddEditProductsVC: UIViewController {
         func uploadImageThenDocument() {
             guard let image = listingImgView.image ,
             let name = listingName.text , name.isNotEmpty ,
-            let description = listingDescription.text , description.isNotEmpty,
+            let description = listingDescription.text ,
             let stock = stock.text , stock.isNotEmpty
             else {
                     simpleAlert(title: "Missing Fields", msg: "Please fill out all required fields.")
@@ -114,7 +123,7 @@ class AddEditProductsVC: UIViewController {
         func uploadDocument(url: String) {
             print("upload doc clicked")
             var docRef : DocumentReference!
-            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, productDescription: listingdescription, imgUrl: url, stock: stockCount, username: UserService.user.username, email: UserService.user.email, city: UserService.user.city)
+            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, productDescription: listingdescription, imgUrl: url, stock: stockCount, username: UserService.user.username, email: UserService.user.email, city: UserService.user.city, zip: UserService.user.zipcode)
             print("made listing")
             if let listingToEdit = listingToEdit {
                 // We are editing a product
@@ -170,6 +179,16 @@ class AddEditProductsVC: UIViewController {
             dismiss(animated: true, completion: nil)
         }
     
+        func numberOfComponents(in pickerView: UIPickerView) -> Int {
+            return 1
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return adminSelectedCategory.listingNamesSupported.count
+        }
+        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            return adminSelectedCategory.listingNamesSupported[row]
+        }
 
     
 

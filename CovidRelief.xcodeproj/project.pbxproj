@@ -101,11 +101,11 @@
 		71A314AF2426F2590055CCEA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */,
 				71B27ACA2426B83E00B2C9FA /* AppDelegate.swift */,
 				71A314C42427E7510055CCEA /* LoginVC.swift */,
 				71A314C62427E7650055CCEA /* RegisterVC.swift */,
 				71A314D424282B620055CCEA /* ViewController.swift */,
-				71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */,
 				71BBC58A24301FD500A0A882 /* AddEditProductsVC.swift */,
 			);
 			path = Controller;
@@ -553,6 +553,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3GL8VAM48;
 				INFOPLIST_FILE = CovidRelief/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -572,6 +573,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3GL8VAM48;
 				INFOPLIST_FILE = CovidRelief/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = (

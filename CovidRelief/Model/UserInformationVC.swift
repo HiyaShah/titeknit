@@ -28,21 +28,26 @@ class UserInformationVC: UIViewController {
     @IBOutlet weak var radiusSlider: UISlider!
     @IBOutlet weak var radiusLbl: UILabel!
     
-    
+    var nearestZipCodes: [String] = UserService.user.nearestZipsToHome
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        distanceManager.delegate = self
+        zipcodeTxt.delegate = self
+        
+        
         usernameTxt.text = UserService.user.username
         emailTxt.text = UserService.user.email
         zipcodeTxt.text = UserService.user.zipcode
+        locationManager.fetchCity(zipcode: UserService.user.zipcode)
         hometownLbl.text = UserService.user.city
         let formattedCurrentVal = String(format: "%.1f", UserService.user.areaRadius)
         radiusLbl.text = String("\(formattedCurrentVal) miles")
         radiusSlider.setValue(Float(UserService.user.areaRadius), animated: true)
         
-       locationManager.delegate = self
-       distanceManager.delegate = self
-       zipcodeTxt.delegate = self
+       
         
         
         
@@ -70,18 +75,18 @@ class UserInformationVC: UIViewController {
         usernameTxt.endEditing(true)
         emailTxt.endEditing(true)
         let hometown = hometownLbl.text ?? ""
-        Preferences.radius = Double(radiusSlider.value)
-        updateData(email: email, username: username, zipcode: zipcode, city: hometown, areaRadius: Double(areaRadius))
+        distanceManager.fetchNearest(zipcode: zipcode, distance: Double(radiusSlider.value))
+        updateData(email: email, username: username, zipcode: zipcode, city: hometown, areaRadius: Double(areaRadius), nearbyZips: nearestZipCodes)
         
     }
     
-    func updateData(email: String, username: String, zipcode: String, city: String, areaRadius: Double) {
+    func updateData(email: String, username: String, zipcode: String, city: String, areaRadius: Double, nearbyZips: [String]) {
         guard let authUser = Auth.auth().currentUser else {
             return
         }
         print("zip i am putting in is \(zipcode)")
         print("arearadius is: \(areaRadius)")
-        var user = User.init(id: "", email: email, username: username, zipcode: zipcode, city: city, areaRadius: areaRadius)
+        var user = User.init(id: "", email: email, username: username, zipcode: zipcode, city: city, areaRadius: areaRadius, nearestZipsToHome: nearestZipCodes)
         let sameUserRef : DocumentReference!
         sameUserRef = Firestore.firestore().collection("users").document(authUser.uid)
         user.id = authUser.uid
@@ -110,6 +115,8 @@ extension UserInformationVC: UITextFieldDelegate, LocationManagerDelegate, Dista
     func didUpdateDistance(_ locationManager: DistanceManager, location: DistanceModel) {
         DispatchQueue.main.async {
             print(location.nearbyZips)
+            self.nearestZipCodes = location.nearbyZips
+        
         }
     }
     
@@ -118,6 +125,8 @@ extension UserInformationVC: UITextFieldDelegate, LocationManagerDelegate, Dista
         DispatchQueue.main.async {
             print(location.cityName)
             self.hometownLbl.text = location.cityName
+            
+            
         }
     }
     func didFailWithError(error: Error) {
@@ -136,7 +145,7 @@ extension UserInformationVC: UITextFieldDelegate, LocationManagerDelegate, Dista
             locationManager.fetchCity(zipcode: zip)
             distanceManager.fetchNearest(zipcode: zipcodeTxt.text ?? UserService.user.zipcode, distance: Double(radiusSlider.value))
         }
-
+        
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
