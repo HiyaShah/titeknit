@@ -35,6 +35,25 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="nWj-oK-6jL">
+                                <rect key="frame" x="20" y="708" width="374" height="94"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZI-Uq-Paw">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <state key="normal" title="My Wishlist"/>
+                                        <connections>
+                                            <segue destination="riq-EE-DiN" kind="show" identifier="toWishlist" id="zkF-C4-t8p"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZG-y1-6pp">
+                                        <rect key="frame" x="0.0" y="64" width="374" height="30"/>
+                                        <state key="normal" title="My givings"/>
+                                        <connections>
+                                            <action selector="givingsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y42-fq-Kld"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -42,6 +61,8 @@
                             <constraint firstItem="2p5-J9-Gph" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="6jj-9P-dox"/>
                             <constraint firstAttribute="trailing" secondItem="2p5-J9-Gph" secondAttribute="trailing" constant="20" id="7Ne-rX-vGw"/>
                             <constraint firstItem="SZN-Jf-gbR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7X5-LT-lRW"/>
+                            <constraint firstItem="nWj-oK-6jL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="HHL-Ln-BoU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nWj-oK-6jL" secondAttribute="bottom" constant="60" id="JCT-6w-GEV"/>
                             <constraint firstItem="oMJ-kO-9qR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="188.66666666666666" id="KEw-Cc-6bb"/>
                             <constraint firstItem="SZN-Jf-gbR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KWW-Q8-hJ8"/>
                             <constraint firstItem="oMJ-kO-9qR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Myp-G9-cAM"/>
@@ -49,6 +70,7 @@
                             <constraint firstItem="oMJ-kO-9qR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hSQ-f5-Tms"/>
                             <constraint firstAttribute="bottom" secondItem="2p5-J9-Gph" secondAttribute="bottom" id="i2x-0H-bXg"/>
                             <constraint firstItem="SZN-Jf-gbR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="4" id="jRn-hp-bSB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nWj-oK-6jL" secondAttribute="trailing" constant="20" id="nVr-eL-JT1"/>
                             <constraint firstItem="2p5-J9-Gph" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xb0-H3-xRx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -88,6 +110,7 @@
                         <segue destination="riq-EE-DiN" kind="show" identifier="toListingsVC" id="gQ2-Y8-WEJ"/>
                         <segue destination="riq-EE-DiN" kind="show" identifier="toFavorites" id="5BC-xe-iGm"/>
                         <segue destination="KnO-TS-sLl" kind="show" identifier="toUserInfoVC" id="1eU-3e-gRo"/>
+                        <segue destination="riq-EE-DiN" kind="show" identifier="toGivings" id="aLv-Ac-gqF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -499,7 +522,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5BC-xe-iGm"/>
+        <segue reference="aLv-Ac-gqF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" width="66" height="54"/>

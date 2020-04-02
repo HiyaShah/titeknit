@@ -23,6 +23,8 @@ class ListingsVC: UIViewController, ListingCellDelegate {
     var db : Firestore!
     var showFavorites = false
     var showNearest = false
+    var showWishlist = false
+    var showGivings = false
     
     var selectedProduct : Listing?
     
@@ -31,6 +33,7 @@ class ListingsVC: UIViewController, ListingCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         UserService.nearest = []
+        UserService.givings = []
 //        let newProductBtn = UIBarButtonItem(title: "+ Product", style: .plain, target: self, action: #selector(newProduct))
         //admin stuff
         if(showFavorites==true) {
@@ -46,8 +49,7 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         
         
         //client stuff
-        
-        
+  
         db = Firestore.firestore()
         
         tableView.delegate = self
@@ -55,6 +57,33 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         tableView.register(UINib(nibName: Identifiers.ListingCell, bundle: nil), forCellReuseIdentifier: Identifiers.ListingCell)
         setupQuery()
         
+        if(showGivings == true) {
+            setupGivings()
+        }
+        
+        
+    }
+    
+    func setupGivings() {
+
+        print(UserService.givings)
+        UserService.givings = []
+        var consToMinus = 0;
+        for n in 0..<listings.count {
+            if UserService.user.username == listings[n-consToMinus].username   {
+                UserService.givingsSelected(listing: listings[n-consToMinus])
+                print("adding in \(listings[n-consToMinus])")
+            } else {
+                print("document \(listings[n-consToMinus]) removed")
+                listings.remove(at: n-consToMinus)
+                tableView.deleteRows(at: [IndexPath(row: n-consToMinus, section: 0)], with: .left)
+                
+                consToMinus = consToMinus + 1
+                
+            }
+        }
+        print(UserService.nearest)
+        nearestBarBtn.isEnabled = false
     }
     
     @IBAction func newProductClicked(_ sender: Any) {
@@ -82,10 +111,9 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         var ref: Query!
         if showFavorites {
             ref = db.collection("users").document(UserService.user.id).collection("favorites")
-//        } else if showNearest {
-//        print("setupquerywithshownearest")
-//        ref = db.collection("users").document(UserService.user.id).collection("nearestListings")
-//        }
+        } else if showGivings {
+            print("setupquerywithshowgivings")
+            ref = db.collection("users").document(UserService.user.id).collection("givingListings")
         } else {
             ref = db.listings(category: category.id)
         }
@@ -140,6 +168,14 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
+    func listingGiven(listing: Listing) {
+        print("listingGivenCalled")
+        UserService.givingsSelected(listing: listing)
+        guard let index = listings.firstIndex(of: listing) else { return }
+        print(UserService.givings)
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
     @IBAction func nearestBtnPressed(_ sender: Any) {
         print("shownearest = true")
         self.showNearest = true
@@ -186,9 +222,11 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
             // Item changed and changed position
             let oldIndex = Int(change.oldIndex)
             let newIndex = Int(change.newIndex)
-            listings.remove(at: oldIndex)
-            listings.insert(listing, at: newIndex)
-            tableView.moveRow(at: IndexPath(row: oldIndex, section: 0), to: IndexPath(row: newIndex, section: 0))
+            if oldIndex != newIndex {
+                listings.remove(at: oldIndex)
+                listings.insert(listing, at: newIndex)
+                tableView.moveRow(at: IndexPath(row: oldIndex, section: 0), to: IndexPath(row: newIndex, section: 0))
+            }
         }
     }
     

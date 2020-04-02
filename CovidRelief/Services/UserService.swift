@@ -19,12 +19,14 @@ final class _UserService {
     var listingCount = Int()
     var favorites = [Listing]()
     var nearest = [Listing]()
+    var givings = [Listing]()
     
     let auth = Auth.auth()
     let db = Firestore.firestore()
     var userListener : ListenerRegistration? = nil
     var favsListener : ListenerRegistration? = nil
     var nearestListener: ListenerRegistration? = nil
+    var givingsListener: ListenerRegistration? = nil
     
     var isGuest : Bool {
         
@@ -80,6 +82,19 @@ final class _UserService {
             })
         })
         
+        let myGivingsRef = userRef.collection("nearestListings")
+        givingsListener = myGivingsRef.addSnapshotListener({ (snap, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            
+            snap?.documents.forEach({ (document) in
+                let givingListing = Listing.init(data: document.data())
+                self.givings.append(givingListing)
+            })
+        })
+        
     }
     
     func favoriteSelected(listing: Listing) {
@@ -109,29 +124,20 @@ final class _UserService {
             nearestListingsRef.document(listing.id).setData(data)
         }
     }
+    
+    func givingsSelected(listing: Listing) {
+        print("givingListings in the making")
+        let givingListingsRef = Firestore.firestore().collection("users").document(user.id).collection("givingListings")
+        print("givinglistingsRef made")
+        if !givings.contains(listing) && listing.username == user.username {
+            // Add as a nearest listing.
+            givings.append(listing)
+            let data = Listing.modelToData(listing: listing)
+            givingListingsRef.document(listing.id).setData(data)
+        }
+    }
 
-    
-    func getUsername() -> String {
-        return user.username
-    }
-    
-    func getEmail() -> String {
-        return user.email
-    }
-    
-    func getZip() -> String {
-        return user.zipcode
-    }
-    func getId() -> String {
-        return user.id
-    }
-    func getUser() -> User {
-        return user
-    }
-    
-    
-    
-    
+   
     func logoutUser() {
         userListener?.remove()
         userListener = nil
@@ -139,9 +145,12 @@ final class _UserService {
         favsListener = nil
         nearestListener?.remove()
         nearestListener = nil
+        givingsListener?.remove()
+        givingsListener = nil
         user = User()
         favorites.removeAll()
         nearest.removeAll()
+        givings.removeAll()
     }
 }
 

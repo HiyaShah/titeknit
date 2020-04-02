@@ -49,4 +49,6 @@ struct Segues {
     static let ToAddEditProducts = "ToAddEditProducts"
     static let toUserInfoVC = "toUserInfoVC"
     static let toNearest = "toNearest"
+    static let toWishlist = "toWishlist"
+    static let toGivings = "toGivings"
 }

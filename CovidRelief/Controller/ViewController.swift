@@ -56,22 +56,8 @@ class ViewController: UIViewController {
 
         
         
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-//        collectionView.register(UINib(nibName: Identifiers.CategoryCell, bundle: nil), forCellWithReuseIdentifier: Identifiers.CategoryCell)
-//
-//        if Auth.auth().currentUser == nil {
-//            Auth.auth().signInAnonymously { (result, error) in
-//                if let error = error {
-//                    Auth.auth().handleFireAuthError(error: error, vc: self)
-//                    debugPrint(error)
-//                }
-//            }
-//        }
-        
-        
     }
-//
+
     
 
     
@@ -163,6 +149,14 @@ class ViewController: UIViewController {
             return
         }
         performSegue(withIdentifier: Segues.toFavorites, sender: self)
+    }
+    
+    @IBAction func givingsClicked(_ sender: Any) {
+        if UserService.isGuest {
+            self.simpleAlert(title: "Hello Neighbor!", msg: "Please create an account to access your own givings and take advantage of all our features.")
+            return
+        }
+        performSegue(withIdentifier: Segues.toGivings, sender: self)
     }
     
     
@@ -282,6 +276,11 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             if let destination = segue.destination as? ListingsVC {
                 destination.category = selectedCategory
                 destination.showFavorites = true
+            }
+        } else if segue.identifier == Segues.toGivings {
+            if let destination = segue.destination as? ListingsVC {
+                destination.category = selectedCategory
+                destination.showGivings = true
             }
         }
     }

@@ -12,6 +12,7 @@ import Kingfisher
 protocol ListingCellDelegate : class {
     func listingFavorited(listing: Listing)
     func listingNearest(listing: Listing)
+    func listingGiven(listing: Listing)
 }
 
 class ListingCell: UITableViewCell {
@@ -63,6 +64,10 @@ class ListingCell: UITableViewCell {
             favoriteBtn.setImage(UIImage(named: AppImages.FilledStar), for: .normal)
         } else {
             favoriteBtn.setImage(UIImage(named: AppImages.EmptyStar), for: .normal)
+        }
+        
+        if listing.username == UserService.user.username {
+            delegate.listingGiven(listing: listing)
         }
     }
     
