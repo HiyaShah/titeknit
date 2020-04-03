@@ -174,6 +174,10 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: Segues.toUserInfoVC, sender: self)
     }
     
+    @IBAction func wishlistClicked(_ sender: Any) {
+        performSegue(withIdentifier: Segues.toWishlist, sender: self)
+    }
+    
     
     
     fileprivate func presentLoginController(){

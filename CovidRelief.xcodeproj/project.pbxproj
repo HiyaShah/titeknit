@@ -41,6 +41,7 @@
 		71E318572434016C0067DC0F /* DistanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E318562434016C0067DC0F /* DistanceModel.swift */; };
 		71E31859243401770067DC0F /* DistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E31858243401770067DC0F /* DistanceManager.swift */; };
 		71E3185B243401920067DC0F /* SharedInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E3185A243401920067DC0F /* SharedInformation.swift */; };
+		71E3185D24366D8D0067DC0F /* WishlistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E3185C24366D8D0067DC0F /* WishlistVC.swift */; };
 		989E7085405828E402B22577 /* Pods_CovidRelief.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D770321858315899DA5A33 /* Pods_CovidRelief.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		71E318562434016C0067DC0F /* DistanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceModel.swift; sourceTree = "<group>"; };
 		71E31858243401770067DC0F /* DistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceManager.swift; sourceTree = "<group>"; };
 		71E3185A243401920067DC0F /* SharedInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformation.swift; sourceTree = "<group>"; };
+		71E3185C24366D8D0067DC0F /* WishlistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistVC.swift; sourceTree = "<group>"; };
 		8B86D1A927D459BD7307C5CC /* Pods-CovidRelief.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovidRelief.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,8 @@
 				71A314C62427E7650055CCEA /* RegisterVC.swift */,
 				71A314D424282B620055CCEA /* ViewController.swift */,
 				71BBC58A24301FD500A0A882 /* AddEditProductsVC.swift */,
+				71BBC58C243139CB00A0A882 /* UserInformationVC.swift */,
+				71E3185C24366D8D0067DC0F /* WishlistVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -130,7 +134,6 @@
 				71A314DD24295B530055CCEA /* Category.swift */,
 				71A2BAA02429AFB8003B65C0 /* Listing.swift */,
 				71BBC5882430065300A0A882 /* User.swift */,
-				71BBC58C243139CB00A0A882 /* UserInformationVC.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				71BBC58B24301FD600A0A882 /* AddEditProductsVC.swift in Sources */,
 				71A314D924287F480055CCEA /* ForgotPasswordVC.swift in Sources */,
 				71BBC5892430065300A0A882 /* User.swift in Sources */,
+				71E3185D24366D8D0067DC0F /* WishlistVC.swift in Sources */,
 				71B27ACD2426B83E00B2C9FA /* SceneDelegate.swift in Sources */,
 				71A2BAA12429AFB8003B65C0 /* Listing.swift in Sources */,
 				71A314D524282B620055CCEA /* ViewController.swift in Sources */,

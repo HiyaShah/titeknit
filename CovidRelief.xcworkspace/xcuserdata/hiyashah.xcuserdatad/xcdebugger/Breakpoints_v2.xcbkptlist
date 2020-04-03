@@ -14,8 +14,8 @@
             filePath = "CovidRelief/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -468,8 +468,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
             endingLineNumber = "61"
-            landmarkName = "UserInformationVC"
-            landmarkType = "3">
+            landmarkName = "radiusSlid(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -500,8 +500,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
             endingLineNumber = "78"
-            landmarkName = "UserInformationVC"
-            landmarkType = "3">
+            landmarkName = "saveChangesPressed(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -516,7 +516,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
             endingLineNumber = "85"
-            landmarkName = "updateData(email:username:zipcode:)"
+            landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -532,7 +532,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
             endingLineNumber = "87"
-            landmarkName = "updateData(email:username:zipcode:)"
+            landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -548,7 +548,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
             endingLineNumber = "92"
-            landmarkName = "updateData(email:username:zipcode:)"
+            landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -564,7 +564,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
             endingLineNumber = "102"
-            landmarkName = "updateData(email:username:zipcode:)"
+            landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -580,7 +580,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
-            landmarkName = "updateData(email:username:zipcode:)"
+            landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -596,7 +596,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
-            landmarkName = "updateData(email:username:zipcode:)"
+            landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

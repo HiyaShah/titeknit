@@ -13,4 +13,18 @@ struct Preferences {
     
     static var nearbyZips: [String] = []
     
+    
+}
+
+
+struct CategoryInformation {
+
+    static var listingTypesSupported: [String] = ["---"]
+    
+//    func appendToListingTypes(type: String){
+//        if(!CategoryInformation.listingTypesSupported.contains(type)){
+//            CategoryInformation.listingTypesSupported.append(type)
+//        }
+//    }
+
 }

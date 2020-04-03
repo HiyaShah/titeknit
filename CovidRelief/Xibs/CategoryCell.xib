@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                         <color key="backgroundColor" red="0.3411764705882353" green="0.3529411764705882" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltB-Hb-xIY" customClass="RoundedNotification" customModule="CovidRelief" customModuleProvider="target">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="ltB-Hb-xIY" customClass="RoundedNotification" customModule="CovidRelief" customModuleProvider="target">
                         <rect key="frame" x="217" y="19.5" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ltB-Hb-xIY" secondAttribute="height" multiplier="1:1" id="6cK-yU-aql"/>

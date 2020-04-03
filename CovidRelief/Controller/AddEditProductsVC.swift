@@ -36,6 +36,7 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         var name = ""
         var stockCount = 0
         var listingdescription = ""
+        var type = ""
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -123,7 +124,8 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         func uploadDocument(url: String) {
             print("upload doc clicked")
             var docRef : DocumentReference!
-            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, productDescription: listingdescription, imgUrl: url, stock: stockCount, username: UserService.user.username, email: UserService.user.email, city: UserService.user.city, zip: UserService.user.zipcode)
+            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, productDescription: listingdescription, imgUrl: url, stock: stockCount, username: UserService.user.username, email: UserService.user.email, city: UserService.user.city, zip: UserService.user.zipcode, type: type)
+            print("upload type \(type)")
             print("made listing")
             if let listingToEdit = listingToEdit {
                 // We are editing a product
@@ -189,7 +191,10 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
             return adminSelectedCategory.listingNamesSupported[row]
         }
-
+        
+        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+            self.type = adminSelectedCategory.listingNamesSupported[row]
+        }
     
 
 }

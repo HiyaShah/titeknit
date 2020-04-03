@@ -32,6 +32,11 @@ struct Category {
             self.isActive = isActive
             self.timeStamp = timeStamp
             self.listingNamesSupported = listingNamesSupported
+            for item in self.listingNamesSupported {
+                if(!CategoryInformation.listingTypesSupported.contains(item)){
+                    CategoryInformation.listingTypesSupported.append(item)
+                }
+            }
         }
         
         init(data: [String: Any]) {
@@ -41,6 +46,11 @@ struct Category {
             self.isActive = data["isActive"] as? Bool ?? true
             self.timeStamp = data["timeStamp"] as? Timestamp ?? Timestamp()
             self.listingNamesSupported = data["listingNamesSupported"] as? [String] ?? ["Other"]
+            for item in self.listingNamesSupported {
+                if(!CategoryInformation.listingTypesSupported.contains(item)){
+                    CategoryInformation.listingTypesSupported.append(item)
+                }
+            }
         }
         
         static func modelToData(category: Category) -> [String: Any] {
