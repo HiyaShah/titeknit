@@ -37,7 +37,7 @@ struct Listing {
         category: String,
         price: Double,
         isActive: Bool,
-        productDescription: String,
+        listingDescription: String,
         imgUrl: String,
         timeStamp: Timestamp = Timestamp(),
         stock: Int,
@@ -51,7 +51,7 @@ struct Listing {
         self.id = id
         self.category = category
         self.isActive = isActive
-        self.listingDescription = productDescription
+        self.listingDescription = listingDescription
         self.imgUrl = imgUrl
         self.timeStamp = timeStamp
         self.stock = stock
@@ -86,7 +86,7 @@ struct Listing {
             "email": listing.email,
             "id" : listing.id,
             "category" : listing.category,
-            "productDescription" : listing.listingDescription,
+            "listingDescription" : listing.listingDescription,
             "isActive": listing.isActive,
             "imgUrl" : listing.imgUrl,
             "timeStamp" : listing.timeStamp,

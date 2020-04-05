@@ -40,7 +40,7 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            
+            self.title = "Add Listing"
             let tap = UITapGestureRecognizer(target: self, action: #selector(imgTapped))
             tap.numberOfTapsRequired = 1
             listingImgView.isUserInteractionEnabled = true
@@ -48,9 +48,19 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
             listingImgView.addGestureRecognizer(tap)
             
             if let listing = listingToEdit {
+                self.title = "Edit Listing"
                 listingName.text = listing.name
+                print("putting in listing desc as \(listing.listingDescription)")
                 listingDescription.text = listing.listingDescription
+                stock.text = String(listing.stock)
+                if let row = CategoryInformation.listingTypesSupported.firstIndex(of: listing.type){
+                    print("row is \(row)")
+                    listingTypePickerView.selectRow(row, inComponent: 0, animated: true)
+                }
+                print("saved description \(description)")
+                
                 addBtn.setTitle("Save Changes", for: .normal)
+                
                 
                 if let url = URL(string: listing.imgUrl) {
                     listingImgView.contentMode = .scaleAspectFill
@@ -74,7 +84,7 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         func uploadImageThenDocument() {
             guard let image = listingImgView.image ,
             let name = listingName.text , name.isNotEmpty ,
-            let description = listingDescription.text ,
+            let description = listingDescription.text , description.isNotEmpty,
             let stock = stock.text , stock.isNotEmpty
             else {
                     simpleAlert(title: "Missing Fields", msg: "Please fill out all required fields.")
@@ -84,6 +94,7 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
             self.name = name
             self.stockCount = Int(stock) ?? 0
             self.listingdescription = description
+            print("uploaded description \(description)")
             
 //            activityIndicator.startAnimating()
             
@@ -124,7 +135,8 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         func uploadDocument(url: String) {
             print("upload doc clicked")
             var docRef : DocumentReference!
-            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, productDescription: listingdescription, imgUrl: url, stock: stockCount, username: UserService.user.username, email: UserService.user.email, city: UserService.user.city, zip: UserService.user.zipcode, type: type)
+//            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, productDescription: listingdescription, imgUrl: url, stock: stockCount, username: UserService.user.username, email: UserService.user.email, city: UserService.user.city, zip: UserService.user.zipcode, type: type)
+            var listing = Listing.init(name: name, id: "", category: adminSelectedCategory.id, price: 0.00, isActive: true, listingDescription: listingdescription, imgUrl: url, stock: stockCount, username: UserService.user.username, email: UserService.user.email, city: UserService.user.city, zip: UserService.user.zipcode, type: type)
             print("upload type \(type)")
             print("made listing")
             if let listingToEdit = listingToEdit {

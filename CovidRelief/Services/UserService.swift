@@ -20,6 +20,7 @@ final class _UserService {
     var favorites = [Listing]()
     var nearest = [Listing]()
     var givings = [Listing]()
+    var wishlist = [Wish]()
     
     let auth = Auth.auth()
     let db = Firestore.firestore()
@@ -27,6 +28,7 @@ final class _UserService {
     var favsListener : ListenerRegistration? = nil
     var nearestListener: ListenerRegistration? = nil
     var givingsListener: ListenerRegistration? = nil
+    var wishlistListener: ListenerRegistration? = nil
     
     var isGuest : Bool {
         
@@ -95,6 +97,19 @@ final class _UserService {
             })
         })
         
+        let wishlistRef = userRef.collection("wishlist")
+        wishlistListener = myGivingsRef.addSnapshotListener({ (snap, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            
+            snap?.documents.forEach({ (document) in
+                let wish = Wish.init(data: document.data())
+                self.wishlist.append(wish)
+            })
+        })
+        
     }
     
     func favoriteSelected(listing: Listing) {
@@ -136,6 +151,34 @@ final class _UserService {
             givingListingsRef.document(listing.id).setData(data)
         }
     }
+    
+    func wishlistTypeSelected(wish: Wish) {
+        print("wishlist in the making")
+        
+        let wishlistRef = Firestore.firestore().collection("users").document(user.id).collection("wishlist")
+        print("wishlistref made")
+        if wishlist.contains(wish) {
+            // We remove it as a wish
+            wishlist.removeAll{ $0 == wish }
+            wishlistRef.document(wish.type).delete()
+        }
+        else {
+            // Add as a wish
+            wishlist.append(wish)
+            let data = Wish.modelToData(wish: wish)
+            wishlistRef.document(wish.type).setData(data)
+        }
+        
+        for item in wishlist {
+            if item.type == "" {
+                if let index = wishlist.firstIndex(of: item) {
+                    wishlist.remove(at: index)
+                }
+            }
+        }
+        print(wishlist.description)
+    }
+ 
 
    
     func logoutUser() {
@@ -147,10 +190,13 @@ final class _UserService {
         nearestListener = nil
         givingsListener?.remove()
         givingsListener = nil
+        wishlistListener?.remove()
+        wishlistListener = nil
         user = User()
         favorites.removeAll()
         nearest.removeAll()
         givings.removeAll()
+        wishlist.removeAll()
     }
 }
 

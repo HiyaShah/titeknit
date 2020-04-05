@@ -179,6 +179,10 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func volunteerClicked(_ sender: Any) {
+        performSegue(withIdentifier: Segues.toVolunteer, sender: self)
+    }
+    
     
     fileprivate func presentLoginController(){
         let storyboard = UIStoryboard(name: Storyboard.LoginStoryboard, bundle: nil)

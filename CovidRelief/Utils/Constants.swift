@@ -40,6 +40,7 @@ struct AppColors {
 struct Identifiers {
     static let CategoryCell = "CategoryCell"
     static let ListingCell = "ListingCell"
+    static let TypesSupportedCell = "TypesSupported"
     
 }
 
@@ -51,4 +52,6 @@ struct Segues {
     static let toNearest = "toNearest"
     static let toWishlist = "toWishlist"
     static let toGivings = "toGivings"
+    static let toVolunteer = "toVolunteer"
+    static let toListingDetails = "toListingDetails"
 }

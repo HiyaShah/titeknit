@@ -19,7 +19,7 @@ struct Preferences {
 
 struct CategoryInformation {
 
-    static var listingTypesSupported: [String] = ["---"]
+    static var listingTypesSupported: [String] = []
     
 //    func appendToListingTypes(type: String){
 //        if(!CategoryInformation.listingTypesSupported.contains(type)){

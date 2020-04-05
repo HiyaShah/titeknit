@@ -103,6 +103,11 @@ class ListingsVC: UIViewController, ListingCellDelegate {
                 destination.adminSelectedCategory = category
                 destination.listingToEdit = selectedProduct
             }
+        } else if segue.identifier == Segues.toListingDetails {
+            print("segued to detail vc")
+            if let destination = segue.destination as? ListingDetailVC {
+                destination.listing = selectedProduct
+            }
         }
     }
 
@@ -199,6 +204,8 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         nearestBarBtn.isEnabled = false
     }
     
+   
+    
     
 
 }
@@ -256,18 +263,15 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
         return 200
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = ProductDetailVC()
-//        let selectedProduct = products[indexPath.row]
-//        vc.product = selectedProduct
-//        vc.modalTransitionStyle = .crossDissolve
-//        vc.modalPresentationStyle = .overCurrentContext
-//        present(vc, animated: true, completion: nil)
-//    }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        // Editing product
-//        selectedProduct = listings[indexPath.row]
-//        performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("didselectrowat")
+        selectedProduct = listings[indexPath.row]
+        if selectedProduct?.username == UserService.user.username {
+            performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
+        } else {
+            performSegue(withIdentifier: Segues.toListingDetails, sender: self)
+        
+        }
+    }
 }
