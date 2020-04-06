@@ -36,7 +36,7 @@
                                 <cells/>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="nWj-oK-6jL">
-                                <rect key="frame" x="20" y="644" width="374" height="158"/>
+                                <rect key="frame" x="20" y="580" width="374" height="222"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGs-hg-k47">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -52,8 +52,15 @@
                                             <action selector="wishlistClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kUo-lG-zVh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZG-y1-6pp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgK-I7-L3B">
                                         <rect key="frame" x="0.0" y="128" width="374" height="30"/>
+                                        <state key="normal" title="All Wishlist Matches"/>
+                                        <connections>
+                                            <action selector="wishlistMatchesClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EI1-ec-4vc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZG-y1-6pp">
+                                        <rect key="frame" x="0.0" y="192" width="374" height="30"/>
                                         <state key="normal" title="My givings"/>
                                         <connections>
                                             <action selector="givingsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y42-fq-Kld"/>
@@ -120,6 +127,7 @@
                         <segue destination="riq-EE-DiN" kind="show" identifier="toGivings" id="aLv-Ac-gqF"/>
                         <segue destination="kZE-pq-hcW" kind="show" identifier="toWishlist" id="eX9-06-d0T"/>
                         <segue destination="IQJ-Is-nLM" kind="show" identifier="toVolunteer" id="aOA-LS-fcJ"/>
+                        <segue destination="riq-EE-DiN" kind="show" identifier="toWishlistMatches" id="kFy-lM-0V0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -156,6 +164,7 @@
                                     <action selector="newProductClicked:" destination="riq-EE-DiN" id="dna-xf-uOz"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem image="gift" catalog="system" id="Uoy-pN-hhC"/>
                             <barButtonItem title="Item" image="house.fill" catalog="system" id="MRx-hR-7VK">
                                 <connections>
                                     <action selector="nearestBtnPressed:" destination="riq-EE-DiN" id="Zzj-lC-nxk"/>
@@ -605,7 +614,6 @@
                             <constraint firstItem="pku-dl-eN8" firstAttribute="top" secondItem="Y6h-RV-Plu" secondAttribute="bottom" constant="25" id="QeV-pb-4SA"/>
                             <constraint firstItem="Y6h-RV-Plu" firstAttribute="leading" secondItem="qEw-Mx-Ras" secondAttribute="leading" constant="20" id="QmX-yu-acj"/>
                             <constraint firstItem="MWq-mv-UOn" firstAttribute="leading" secondItem="htj-vD-xAY" secondAttribute="leading" constant="20" id="arI-T0-Iyf"/>
-                            <constraint firstItem="qEw-Mx-Ras" firstAttribute="bottom" secondItem="No3-bN-Gz8" secondAttribute="bottom" constant="20" id="bnx-53-mMa"/>
                             <constraint firstItem="Hos-fJ-pzO" firstAttribute="leading" secondItem="pku-dl-eN8" secondAttribute="trailing" constant="10" id="foQ-F6-BLX"/>
                             <constraint firstItem="No3-bN-Gz8" firstAttribute="top" secondItem="Hos-fJ-pzO" secondAttribute="bottom" constant="20" id="n7h-mk-tcB"/>
                             <constraint firstItem="No3-bN-Gz8" firstAttribute="top" secondItem="pku-dl-eN8" secondAttribute="bottom" constant="20" id="p0Q-us-Opf"/>
@@ -613,6 +621,7 @@
                             <constraint firstItem="Y6h-RV-Plu" firstAttribute="top" secondItem="MWq-mv-UOn" secondAttribute="bottom" constant="30" id="pFu-0O-WIz"/>
                             <constraint firstItem="Y6h-RV-Plu" firstAttribute="centerX" secondItem="htj-vD-xAY" secondAttribute="centerX" id="vKM-7u-Sng"/>
                             <constraint firstItem="MWq-mv-UOn" firstAttribute="top" secondItem="qEw-Mx-Ras" secondAttribute="top" constant="30" id="vUu-37-w90"/>
+                            <constraint firstItem="qEw-Mx-Ras" firstAttribute="bottom" secondItem="No3-bN-Gz8" secondAttribute="bottom" constant="20" id="xGI-Lf-Ryr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qEw-Mx-Ras"/>
                     </view>
@@ -775,10 +784,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aLv-Ac-gqF"/>
+        <segue reference="kFy-lM-0V0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" width="66" height="54"/>
+        <image name="gift" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>

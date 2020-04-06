@@ -10,6 +10,8 @@ import UIKit
 import FirebaseFirestore
 
 class ListingsVC: UIViewController, ListingCellDelegate {
+  
+    
 
     //outlets
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +27,7 @@ class ListingsVC: UIViewController, ListingCellDelegate {
     var showNearest = false
     var showWishlist = false
     var showGivings = false
+    var showWishlistMatches = false
     
     var selectedProduct : Listing?
     
@@ -86,6 +89,8 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         nearestBarBtn.isEnabled = false
     }
     
+    
+    
     @IBAction func newProductClicked(_ sender: Any) {
         performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
 
@@ -119,7 +124,10 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         } else if showGivings {
             print("setupquerywithshowgivings")
             ref = db.collection("users").document(UserService.user.id).collection("givingListings")
-        } else {
+        } else if showWishlistMatches {
+            ref = db.collection("users").document(UserService.user.id).collection("wishlist")
+        }
+        else {
             ref = db.listings(category: category.id)
         }
         
@@ -180,6 +188,20 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         print(UserService.givings)
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
+    
+    func listingWishMatched(listing: Listing) {
+          print("listing wish match possibly")
+          if UserService.isGuest {
+              self.simpleAlert(title: "Hello Neighbor!", msg: "Please create a free account to favorite this account and take advantage of all our features.")
+              return
+          }
+          UserService.wishlistTypeMatched(listing: listing)
+          guard let index = listings.firstIndex(of: listing) else { return }
+          tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+
+      }
+    
+    
     
     @IBAction func nearestBtnPressed(_ sender: Any) {
         print("shownearest = true")

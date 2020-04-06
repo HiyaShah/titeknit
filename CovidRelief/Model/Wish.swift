@@ -20,22 +20,27 @@ import FirebaseFirestore
 
 struct Wish {
     var type: String
+    var availableListings: [Listing]
     
     
-    init(type: String) {
+    init(type: String,
+         availableListings: [Listing]) {
             
             self.type = type
+            self.availableListings = availableListings
             
         }
         
         init(data: [String: Any]) {
             self.type = data["type"] as? String ?? ""
+            self.availableListings = data["availableListings"] as? [Listing] ?? []
             
         }
         
         static func modelToData(wish: Wish) -> [String: Any] {
             let data : [String: Any] = [
                 "type" : wish.type,
+                "availableListings" : wish.availableListings
             ]
             
             return data
