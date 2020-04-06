@@ -20,7 +20,7 @@ final class _UserService {
     var favorites = [Listing]()
     var nearest = [Listing]()
     var givings = [Listing]()
-    var wishlist = [Listing]()
+    var wishlist = [Wish]()
     
     let auth = Auth.auth()
     let db = Firestore.firestore()
@@ -105,7 +105,7 @@ final class _UserService {
             }
             
             snap?.documents.forEach({ (document) in
-                let wish = Listing.init(data: document.data())
+                let wish = Wish.init(data: document.data())
                 self.wishlist.append(wish)
             })
         })
@@ -152,51 +152,34 @@ final class _UserService {
         }
     }
     
-//    func wishlistTypeSelected(wish: Wish) {
-//        print("wishlist in the making")
-//
-//        let wishlistRef = Firestore.firestore().collection("users").document(user.id).collection("wishlist")
-//        print("wishlistref made")
-//        if wishlist.contains(wish) {
-//            // We remove it as a wish
-//            wishlist.removeAll{ $0 == wish }
-//            wishlistRef.document(wish.type).delete()
-//        }
-//        else {
-//            // Add as a wish
-//            wishlist.append(wish)
-//            let data = Wish.modelToData(wish: wish)
-//            wishlistRef.document(wish.type).setData(data)
-//        }
-//
-//        for item in wishlist {
-//            if item.type == "" {
-//                if let index = wishlist.firstIndex(of: item) {
-//                    wishlist.remove(at: index)
-//                }
-//            }
-//        }
-//        print(wishlist.description)
-//    }
- 
-    func wishlistTypeMatched(listing: Listing){
+    func wishlistTypeSelected(wish: Wish) {
+        print("wishlist in the making")
         
         let wishlistRef = Firestore.firestore().collection("users").document(user.id).collection("wishlist")
-        if !wishlist.contains(listing) {
-            // We add it as a favorite
-            wishlist.append(listing)
-            let data = Listing.modelToData(listing: listing)
-            wishlistRef.document(listing.id).setData(data)
+        print("wishlistref made")
+        if wishlist.contains(wish) {
+            // We remove it as a wish
+            wishlist.removeAll{ $0 == wish }
+            wishlistRef.document(wish.type).delete()
+        }
+        else {
+            // Add as a wish
+            wishlist.append(wish)
+            let data = Wish.modelToData(wish: wish)
+            wishlistRef.document(wish.type).setData(data)
         }
         
-    }
-    
-    func isYourTypeInWishes(listing: Listing) -> Bool {
-        if user.wishes.contains(listing.type)   {
-            return true
+        for item in wishlist {
+            if item.type == "" {
+                if let index = wishlist.firstIndex(of: item) {
+                    wishlist.remove(at: index)
+                }
+            }
         }
-        return false
+        print(wishlist.description)
     }
+ 
+
    
     func logoutUser() {
         userListener?.remove()

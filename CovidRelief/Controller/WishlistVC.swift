@@ -13,8 +13,6 @@ import FirebaseFirestore
 class WishlistVC: UIViewController, TypeSupportedCellDelegate {
     
     
-    
-    
     @IBOutlet weak var selectionLbl: UILabel!
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -47,54 +45,19 @@ class WishlistVC: UIViewController, TypeSupportedCellDelegate {
 
     
     
-    func typeSelected(wish: String) {
+    func typeSelected(wish: Wish) {
         print("type wished")
         if UserService.isGuest {
             self.simpleAlert(title: "Hello Neighbor!", msg: "Please create a free account to wishlist this type and take advantage of all our features.")
             return
         }
         
-        updateData(wish: wish)
-        
-        selectionLbl.text = String(UserService.user.wishes.count)
-        guard let index = CategoryInformation.listingTypesSupported.firstIndex(of: wish) else { return }
+        UserService.wishlistTypeSelected(wish: wish)
+        guard let index = CategoryInformation.listingTypesSupported.firstIndex(of: wish.type) else { return }
+        selectionLbl.text = String(UserService.wishlist.count)
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
 
-    func updateData(wish: String) {
-        guard let authUser = Auth.auth().currentUser else {
-            return
-        }
-        
-        var arr = [String]()
-        for item in UserService.user.wishes {
-            arr.append(item)
-        }
-        if arr.contains(wish){
-            arr.removeAll{ $0 == wish }
-        } else {
-            arr.append(wish)
-        }
-        
-        var user = User.init(id: "", email: UserService.user.email, username: UserService.user.username, zipcode: UserService.user.zipcode, city: UserService.user.city, areaRadius: UserService.user.areaRadius, nearestZipsToHome: UserService.user.nearestZipsToHome, wishes: arr)
-        let sameUserRef : DocumentReference!
-        sameUserRef = Firestore.firestore().collection("users").document(authUser.uid)
-        user.id = authUser.uid
-        print(user.id)
-
-
-        let data = User.modelToData(user: user)
-        print("about to set data")
-        sameUserRef.setData(data, merge: true) { (error) in
-
-            if error != nil {
-                self.simpleAlert(title: "Error", msg: "Unable to upload Firestore document.")
-                print("did not set data")
-                return
-            }
-            print("set data")
-        }
-    }
     
     
     
@@ -113,7 +76,7 @@ extension WishlistVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.TypesSupportedCell, for: indexPath) as? TypesSupported {
-            cell.configureCell(wish: CategoryInformation.listingTypesSupported[indexPath.row], delegate: self)
+            cell.configureCell(wish: Wish(type: CategoryInformation.listingTypesSupported[indexPath.row]), delegate: self)
             return cell
         }
         return UITableViewCell()
@@ -124,9 +87,6 @@ extension WishlistVC: UITableViewDelegate, UITableViewDataSource {
     }
 
 }
-
-
-
 
 //extension WishlistVC: UITextFieldDelegate {
 //

@@ -183,10 +183,6 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: Segues.toVolunteer, sender: self)
     }
     
-    @IBAction func wishlistMatchesClicked(_ sender: Any) {
-        performSegue(withIdentifier: Segues.toWishlistMatches, sender: self)
-    }
-    
     
     fileprivate func presentLoginController(){
         let storyboard = UIStoryboard(name: Storyboard.LoginStoryboard, bundle: nil)
@@ -293,11 +289,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             if let destination = segue.destination as? ListingsVC {
                 destination.category = selectedCategory
                 destination.showGivings = true
-            }
-        } else if segue.identifier == Segues.toWishlistMatches {
-            if let destination = segue.destination as? ListingsVC {
-                destination.category = selectedCategory
-                destination.showWishlistMatches = true
             }
         }
     }

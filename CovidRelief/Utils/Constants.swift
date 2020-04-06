@@ -54,5 +54,4 @@ struct Segues {
     static let toGivings = "toGivings"
     static let toVolunteer = "toVolunteer"
     static let toListingDetails = "toListingDetails"
-    static let toWishlistMatches = "toWishlistMatches"
 }

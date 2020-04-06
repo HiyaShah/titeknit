@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TypeSupportedCellDelegate : class {
-    func typeSelected(wish: String)
+    func typeSelected(wish: Wish)
 }
 
 
@@ -22,20 +22,20 @@ class TypesSupported: UITableViewCell {
     @IBOutlet weak var typeLbl: UILabel!
     
     weak var delegate : TypeSupportedCellDelegate?
-    private var wishType: String!
+    private var wish: Wish!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    func configureCell(wish: String, delegate: TypeSupportedCellDelegate) {
-        self.wishType = wish
+    func configureCell(wish: Wish, delegate: TypeSupportedCellDelegate) {
+        self.wish = wish
         self.delegate = delegate
         
-        typeLbl.text = wish
+        typeLbl.text = wish.type
         
-        if UserService.user.wishes.contains(wish) {
+        if UserService.wishlist.contains(wish) {
             if #available(iOS 13.0, *) {
                 checkmarkCircle.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             } else {
@@ -53,7 +53,8 @@ class TypesSupported: UITableViewCell {
     
     @IBAction func checkMarkPressed(_ sender: Any) {
 
-        delegate?.typeSelected(wish: wishType)
- 
+        delegate?.typeSelected(wish: wish)
     }
+    
+    
 }
