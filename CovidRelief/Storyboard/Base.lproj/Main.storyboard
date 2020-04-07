@@ -36,7 +36,7 @@
                                 <cells/>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="nWj-oK-6jL">
-                                <rect key="frame" x="20" y="644" width="374" height="158"/>
+                                <rect key="frame" x="20" y="580" width="374" height="222"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGs-hg-k47">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -52,8 +52,15 @@
                                             <action selector="wishlistClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kUo-lG-zVh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZG-y1-6pp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVn-Cm-Se7">
                                         <rect key="frame" x="0.0" y="128" width="374" height="30"/>
+                                        <state key="normal" title="Wishlist Matches"/>
+                                        <connections>
+                                            <action selector="wishlistMatchesClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AvA-24-goU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZG-y1-6pp">
+                                        <rect key="frame" x="0.0" y="192" width="374" height="30"/>
                                         <state key="normal" title="My givings"/>
                                         <connections>
                                             <action selector="givingsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y42-fq-Kld"/>
@@ -120,6 +127,7 @@
                         <segue destination="riq-EE-DiN" kind="show" identifier="toGivings" id="aLv-Ac-gqF"/>
                         <segue destination="kZE-pq-hcW" kind="show" identifier="toWishlist" id="eX9-06-d0T"/>
                         <segue destination="IQJ-Is-nLM" kind="show" identifier="toVolunteer" id="aOA-LS-fcJ"/>
+                        <segue destination="riq-EE-DiN" kind="show" identifier="toWishlistMatches" id="lId-Pc-Y8U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -775,7 +783,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aLv-Ac-gqF"/>
+        <segue reference="lId-Pc-Y8U"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" width="66" height="54"/>

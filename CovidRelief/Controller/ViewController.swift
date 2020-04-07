@@ -179,6 +179,11 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func wishlistMatchesClicked(_ sender: Any) {
+        performSegue(withIdentifier: "toWishlistMatches", sender: self)
+    }
+    
+    
     @IBAction func volunteerClicked(_ sender: Any) {
         performSegue(withIdentifier: Segues.toVolunteer, sender: self)
     }
@@ -289,6 +294,12 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             if let destination = segue.destination as? ListingsVC {
                 destination.category = selectedCategory
                 destination.showGivings = true
+            }
+        } else if segue.identifier == Segues.toWishlistMatches {
+            if let destination = segue.destination as? ListingsVC {
+                print("category im passing in is \(selectedCategory)")
+                destination.category = selectedCategory
+                destination.showWishlistMatches = true
             }
         }
     }

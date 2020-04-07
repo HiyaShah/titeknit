@@ -13,6 +13,7 @@ protocol ListingCellDelegate : class {
     func listingFavorited(listing: Listing)
     func listingNearest(listing: Listing)
     func listingGiven(listing: Listing)
+    func listingWishlistMatched(listing: Listing)
 }
 
 class ListingCell: UITableViewCell {
@@ -69,6 +70,8 @@ class ListingCell: UITableViewCell {
         if listing.username == UserService.user.username {
             delegate.listingGiven(listing: listing)
         }
+        
+        delegate.listingWishlistMatched(listing: listing)
     }
     
     

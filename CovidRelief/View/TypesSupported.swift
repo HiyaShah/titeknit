@@ -54,6 +54,7 @@ class TypesSupported: UITableViewCell {
     @IBAction func checkMarkPressed(_ sender: Any) {
 
         delegate?.typeSelected(wish: wish)
+        
     }
     
     

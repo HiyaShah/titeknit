@@ -10,6 +10,8 @@ import UIKit
 import FirebaseFirestore
 
 class ListingsVC: UIViewController, ListingCellDelegate {
+    
+    
 
     //outlets
     @IBOutlet weak var tableView: UITableView!
@@ -25,15 +27,16 @@ class ListingsVC: UIViewController, ListingCellDelegate {
     var showNearest = false
     var showWishlist = false
     var showGivings = false
+    var showWishlistMatches = false
     
     var selectedProduct : Listing?
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         UserService.nearest = []
         UserService.givings = []
+        UserService.wishlistListings = []
 //        let newProductBtn = UIBarButtonItem(title: "+ Product", style: .plain, target: self, action: #selector(newProduct))
         //admin stuff
         if(showFavorites==true) {
@@ -43,6 +46,7 @@ class ListingsVC: UIViewController, ListingCellDelegate {
             newProductBarBtn.isEnabled = true
             nearestBarBtn.isEnabled = true
         }
+        
         
         navigationItem.setRightBarButtonItems([newProductBarBtn, nearestBarBtn], animated: false)
         
@@ -55,11 +59,21 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: Identifiers.ListingCell, bundle: nil), forCellReuseIdentifier: Identifiers.ListingCell)
+        
         setupQuery()
         
         if(showGivings == true) {
             setupGivings()
+            self.title = "My Givings"
         }
+        if(showWishlistMatches){
+            self.title = "Wishlist Matches"
+            
+        }
+        if(showFavorites) {
+            self.title = "Favorites"
+        }
+        
         
         
     }
@@ -75,6 +89,9 @@ class ListingsVC: UIViewController, ListingCellDelegate {
                 print("adding in \(listings[n-consToMinus])")
             } else {
                 print("document \(listings[n-consToMinus]) removed")
+                if let index = UserService.givings.firstIndex(of: listings[n-consToMinus]){
+                    UserService.givings.remove(at: index)
+                }
                 listings.remove(at: n-consToMinus)
                 tableView.deleteRows(at: [IndexPath(row: n-consToMinus, section: 0)], with: .left)
                 
@@ -85,6 +102,34 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         print(UserService.nearest)
         nearestBarBtn.isEnabled = false
     }
+    
+    func setupWishlistMatches() {
+
+        print("first \(listings)")
+        for item in listings {
+            if !UserService.isListingTypeInUserWishlist(listing: item){
+                print(item.type)
+                print(UserService.wishlist)
+                
+                if let indexUserService = UserService.wishlistListings.firstIndex(of: item){
+                    UserService.wishlistListings.remove(at: indexUserService)
+                }
+                if let index = listings.firstIndex(of: item) {
+                    listings.remove(at: index)
+                    tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                    print("I deleted rows")
+                }
+               
+
+            }
+            if let index = listings.firstIndex(of: item) {
+                tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            }
+       }
+        print("second \(listings)")
+    
+    }
+    
     
     @IBAction func newProductClicked(_ sender: Any) {
         performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
@@ -100,7 +145,9 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         if segue.identifier == Segues.ToAddEditProducts {
             print("segued to add edit vc")
             if let destination = segue.destination as? AddEditProductsVC {
-                destination.adminSelectedCategory = category
+                if let category = category {
+                    destination.adminSelectedCategory = category
+                }
                 destination.listingToEdit = selectedProduct
             }
         } else if segue.identifier == Segues.toListingDetails {
@@ -119,7 +166,11 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         } else if showGivings {
             print("setupquerywithshowgivings")
             ref = db.collection("users").document(UserService.user.id).collection("givingListings")
-        } else {
+        } else if showWishlistMatches {
+            ref = db.collection("users").document(UserService.user.id).collection("wishlistMatches")
+            print(ref)
+        }
+        else {
             ref = db.listings(category: category.id)
         }
         
@@ -181,7 +232,22 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
+    
+    func listingWishlistMatched(listing: Listing) {
+        print("listing matched maybe")
+        if UserService.isGuest {
+            self.simpleAlert(title: "Hello Neighbor!", msg: "Please create a free account to see wishlist matches for this account and take advantage of all our features.")
+            return
+        }
+        
+        UserService.wishlistMatchSelected(listing: listing)
+        guard let index = listings.firstIndex(of: listing) else { return }
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
     @IBAction func nearestBtnPressed(_ sender: Any) {
+        if listings.count == 0 {return}
+        self.title = "In your area"
         print("shownearest = true")
         self.showNearest = true
         print(UserService.user.nearestZipsToHome)
@@ -214,12 +280,20 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func onDocumentAdded(change: DocumentChange, listing: Listing) {
         let newIndex = Int(change.newIndex)
+        print(newIndex)
         listings.insert(listing, at: newIndex)
         tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .fade)
+//        if listings.count > 0 {
+//            if(showWishlistMatches==true) {
+//                setupWishlistMatches()
+//
+//            }
+//        }
         print("document (listing) added")
     }
     
     func onDocumentModified(change: DocumentChange, listing: Listing) {
+        print("document (listing) modifying")
         if change.oldIndex == change.newIndex {
             // Item changed, but remained in the same position
             let index = Int(change.newIndex)
@@ -247,7 +321,10 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         UserService.listingCount = listings.count
+        print("listingscount is \(listings.count)")
+        
         return listings.count
+        
         
     }
     
@@ -267,11 +344,14 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didselectrowat")
         selectedProduct = listings[indexPath.row]
-        if selectedProduct?.username == UserService.user.username {
-            performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
-        } else {
-            performSegue(withIdentifier: Segues.toListingDetails, sender: self)
+        if showWishlistMatches {return}
+            if selectedProduct?.username == UserService.user.username {
+               
+                performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
+            } else {
+                performSegue(withIdentifier: Segues.toListingDetails, sender: self)
+            
+            }
         
-        }
     }
 }

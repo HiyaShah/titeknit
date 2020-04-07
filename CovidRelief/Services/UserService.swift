@@ -21,6 +21,7 @@ final class _UserService {
     var nearest = [Listing]()
     var givings = [Listing]()
     var wishlist = [Wish]()
+    var wishlistListings = [Listing]()
     
     let auth = Auth.auth()
     let db = Firestore.firestore()
@@ -29,6 +30,7 @@ final class _UserService {
     var nearestListener: ListenerRegistration? = nil
     var givingsListener: ListenerRegistration? = nil
     var wishlistListener: ListenerRegistration? = nil
+    var wishlistMatchListener: ListenerRegistration? = nil
     
     var isGuest : Bool {
         
@@ -98,7 +100,7 @@ final class _UserService {
         })
         
         let wishlistRef = userRef.collection("wishlist")
-        wishlistListener = myGivingsRef.addSnapshotListener({ (snap, error) in
+        wishlistListener = wishlistRef.addSnapshotListener({ (snap, error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 return
@@ -107,6 +109,19 @@ final class _UserService {
             snap?.documents.forEach({ (document) in
                 let wish = Wish.init(data: document.data())
                 self.wishlist.append(wish)
+            })
+        })
+        
+        let wishlistMatchRef = userRef.collection("wishlistMatches")
+        wishlistMatchListener = wishlistMatchRef.addSnapshotListener({ (snap, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+            
+            snap?.documents.forEach({ (document) in
+                let wishlistMatch = Listing.init(data: document.data())
+                self.wishlistListings.append(wishlistMatch)
             })
         })
         
@@ -157,14 +172,16 @@ final class _UserService {
         
         let wishlistRef = Firestore.firestore().collection("users").document(user.id).collection("wishlist")
         print("wishlistref made")
-        if wishlist.contains(wish) {
+        if isTypeSelectedInUserWishlist(type: wish.type) {
             // We remove it as a wish
             wishlist.removeAll{ $0 == wish }
+            removeWishlistExtras()
             wishlistRef.document(wish.type).delete()
         }
         else {
             // Add as a wish
             wishlist.append(wish)
+            removeWishlistExtras()
             let data = Wish.modelToData(wish: wish)
             wishlistRef.document(wish.type).setData(data)
         }
@@ -176,9 +193,64 @@ final class _UserService {
                 }
             }
         }
+        
         print(wishlist.description)
     }
+    
+    func wishlistMatchSelected(listing: Listing) {
+        print("nearestListings in the making")
+        let wishlistMatchRef = Firestore.firestore().collection("users").document(user.id).collection("wishlistMatches")
+        print("nearestlistingsRef made")
+        if !wishlistListings.contains(listing) && isListingTypeInUserWishlist(listing: listing) {
+            wishlistListings.append(listing)
+            let data = Listing.modelToData(listing: listing)
+            wishlistMatchRef.document(listing.id).setData(data)
+        }
+//        else {
+//            wishlistListings.removeAll{ $0 == listing }
+//            wishlistMatchRef.document(listing.id).delete()
+//        }
+    }
+    
+    func isListingTypeInUserWishlist(listing: Listing) -> Bool {
+        for item in wishlist {
+            if item.type == listing.type {
+                return true
+            }
+            
+        }
+        return false
+    }
+    
+    func isTypeSelectedInUserWishlist(type: String) -> Bool {
+        for item in wishlist {
+            if item.type == type {
+                return true
+            }
+            
+        }
+        return false
+    }
+    
+    func removeWishlistExtras() {
+        for item in wishlist {
+            removeWishlistExtras(type: item.type)
+        }
+    }
+    
  
+    func removeWishlistExtras(type: String){
+        var count = 0
+        for item in wishlist {
+            if item.type == type {
+                
+                if count >= 1 {
+                    wishlist.remove(at: wishlist.firstIndex(of: item)!)
+                }
+                count += 1
+            }
+        }
+    }
 
    
     func logoutUser() {
@@ -192,11 +264,16 @@ final class _UserService {
         givingsListener = nil
         wishlistListener?.remove()
         wishlistListener = nil
+        wishlistMatchListener?.remove()
+        wishlistMatchListener = nil
         user = User()
         favorites.removeAll()
         nearest.removeAll()
         givings.removeAll()
         wishlist.removeAll()
+        wishlistListings.removeAll()
     }
 }
+
+
 
