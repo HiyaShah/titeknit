@@ -344,7 +344,7 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didselectrowat")
         selectedProduct = listings[indexPath.row]
-        if showWishlistMatches {return}
+        if showWishlistMatches || showGivings || showNearest {return}
             if selectedProduct?.username == UserService.user.username {
                
                 performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
