@@ -18,15 +18,24 @@ class CategoryCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        addShadowEffect()
+        //addShadowEffect()
+        let bottomLine = CALayer()
+        bottomLine.frame =
+            CGRect(x: 0.0, y: self.frame.height - 4.0, width: self.frame.width, height: 4.0)
+
+        bottomLine.backgroundColor = UIColor.darkGray.cgColor
+
+        self.layer.addSublayer(bottomLine)
     }
+    
+    
     
     func configureCell(category: Category) {
         categoryLbl.text = category.name
         categoryCount.text = String(UserService.listingCount)
         //only writing the count after seguing to the products vc ah
         print(UserService.listingCount)
+        
         
     }
     

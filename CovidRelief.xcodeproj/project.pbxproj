@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71053E8D243D93CA00959DBC /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71053E8C243D93CA00959DBC /* CategoriesVC.swift */; };
 		71A2BA9F2429AF3B003B65C0 /* ListingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */; };
 		71A2BAA12429AFB8003B65C0 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A2BAA02429AFB8003B65C0 /* Listing.swift */; };
 		71A314AE2426ECB50055CCEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A314AD2426ECB50055CCEA /* GoogleService-Info.plist */; };
@@ -50,12 +51,13 @@
 		71E3188F243991B80067DC0F /* ListingDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E3188E243991B80067DC0F /* ListingDetailVC.swift */; };
 		71E318922439A32E0067DC0F /* DeliverQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E318902439A32E0067DC0F /* DeliverQuestionVC.swift */; };
 		71E318932439A32E0067DC0F /* DeliverQuestionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71E318912439A32E0067DC0F /* DeliverQuestionVC.xib */; };
-		989E7085405828E402B22577 /* Pods_CovidRelief.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D770321858315899DA5A33 /* Pods_CovidRelief.framework */; };
+		989E7085405828E402B22577 /* Pods_CovidRelief.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D770321858315899DA5A33 /* Pods_CovidRelief.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02D770321858315899DA5A33 /* Pods_CovidRelief.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovidRelief.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6248392024EFF22CF39B67F7 /* Pods-CovidRelief.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovidRelief.release.xcconfig"; path = "Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief.release.xcconfig"; sourceTree = "<group>"; };
+		71053E8C243D93CA00959DBC /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsVC.swift; sourceTree = "<group>"; };
 		71A2BAA02429AFB8003B65C0 /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		71A314AD2426ECB50055CCEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				71E3185C24366D8D0067DC0F /* WishlistVC.swift */,
 				71E3186624394E050067DC0F /* VolunteerVC.swift */,
 				71E3188E243991B80067DC0F /* ListingDetailVC.swift */,
+				71053E8C243D93CA00959DBC /* CategoriesVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				71E3188B243962550067DC0F /* Level.swift in Sources */,
 				71BBC59124316BBF00A0A882 /* LocationData.swift in Sources */,
 				71E3185B243401920067DC0F /* SharedInformation.swift in Sources */,
+				71053E8D243D93CA00959DBC /* CategoriesVC.swift in Sources */,
 				71A2BA9F2429AF3B003B65C0 /* ListingsVC.swift in Sources */,
 				71E318922439A32E0067DC0F /* DeliverQuestionVC.swift in Sources */,
 				71A314E124295E9A0055CCEA /* CategoryCell.swift in Sources */,

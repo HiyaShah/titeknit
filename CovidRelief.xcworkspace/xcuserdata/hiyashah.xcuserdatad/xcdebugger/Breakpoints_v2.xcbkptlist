@@ -14,10 +14,10 @@
             filePath = "CovidRelief/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "ViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -138,118 +138,10 @@
             filePath = "CovidRelief/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E1EC534F-CE95-46EF-8693-45950798B37D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CovidRelief/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "ViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "E1EC534F-CE95-46EF-8693-45950798B37D - 2c6883c12ce5adf4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.db.getter : Swift.Optional&lt;__C.FIRFirestore&gt;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "126">
-               </Location>
-               <Location
-                  uuid = "E1EC534F-CE95-46EF-8693-45950798B37D - 47c42e32ba664be0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.db.setter : Swift.Optional&lt;__C.FIRFirestore&gt;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "164">
-               </Location>
-               <Location
-                  uuid = "E1EC534F-CE95-46EF-8693-45950798B37D - e625ee8da4971473"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.db.modify : Swift.Optional&lt;__C.FIRFirestore&gt;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "18">
-               </Location>
-               <Location
-                  uuid = "E1EC534F-CE95-46EF-8693-45950798B37D - c4bf351dfc553608"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.db.modify : Swift.Optional&lt;__C.FIRFirestore&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "E1EC534F-CE95-46EF-8693-45950798B37D - 2897226413d23b7d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; CovidRelief.ViewController"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "1285">
-               </Location>
-               <Location
-                  uuid = "E1EC534F-CE95-46EF-8693-45950798B37D - 64a49e1c5e899f24"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;CovidRelief.ViewController&gt;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "1220">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -262,134 +154,10 @@
             filePath = "CovidRelief/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6CD572BA-12E4-4389-9DB1-7A07DAE997DC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CovidRelief/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "setupCollectionView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3FF447C0-00D2-4358-963F-E244AB83BF10"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CovidRelief/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "ViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "3FF447C0-00D2-4358-963F-E244AB83BF10 - 93718ad8c75881b5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.listener.getter : Swift.Optional&lt;__C.FIRListenerRegistration&gt;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "122">
-               </Location>
-               <Location
-                  uuid = "3FF447C0-00D2-4358-963F-E244AB83BF10 - f36e5e0cbb1e1da1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.listener.setter : Swift.Optional&lt;__C.FIRListenerRegistration&gt;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "148">
-               </Location>
-               <Location
-                  uuid = "3FF447C0-00D2-4358-963F-E244AB83BF10 - 8c259230a9a108b0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.listener.modify : Swift.Optional&lt;__C.FIRListenerRegistration&gt;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "18">
-               </Location>
-               <Location
-                  uuid = "3FF447C0-00D2-4358-963F-E244AB83BF10 - cf544b5c86a72333"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.listener.modify : Swift.Optional&lt;__C.FIRListenerRegistration&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "3FF447C0-00D2-4358-963F-E244AB83BF10 - 2897226413d23b7d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; CovidRelief.ViewController"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "1385">
-               </Location>
-               <Location
-                  uuid = "3FF447C0-00D2-4358-963F-E244AB83BF10 - 64a49e1c5e899f24"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CovidRelief.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;CovidRelief.ViewController&gt;"
-                  moduleName = "CovidRelief"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hiyashah/Desktop/IOSApps/IOSProjects/CovidRelief/CovidRelief/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "1320">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -402,25 +170,9 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "setupQuery()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "265F9323-88A8-4DA3-A908-5ACBDD653EEF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CovidRelief/Controller/ListingsVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -434,8 +186,8 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "setupQuery()"
             landmarkType = "7">
          </BreakpointContent>
@@ -450,8 +202,8 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "setupQuery()"
             landmarkType = "7">
          </BreakpointContent>
@@ -610,8 +362,8 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -626,8 +378,8 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -642,8 +394,8 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "onDocumentAdded(change:listing:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -658,8 +410,8 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
             landmarkName = "onDocumentModified(change:listing:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -674,8 +426,8 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "onDocumentRemoved(change:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -690,8 +442,8 @@
             filePath = "CovidRelief/Controller/ListingsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "onDocumentAdded(change:listing:)"
             landmarkType = "7">
          </BreakpointContent>
