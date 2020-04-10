@@ -17,8 +17,6 @@ pod 'Firebase/Storage', '6.1.0'
 pod 'Firebase/Functions', '6.1.0'
 pod 'IQKeyboardManagerSwift', '6.3.0'
 pod 'Kingfisher', '~> 4.0'
-#pod 'GTMSessionFetcher'
-
 #pod 'Stripe', '15.0.1'
 
 

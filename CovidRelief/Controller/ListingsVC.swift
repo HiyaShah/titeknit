@@ -59,6 +59,7 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: Identifiers.ListingCell, bundle: nil), forCellReuseIdentifier: Identifiers.ListingCell)
+        
         setupQuery()
         
         if(showGivings == true) {
@@ -75,13 +76,6 @@ class ListingsVC: UIViewController, ListingCellDelegate {
         
         
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        listener.remove()
-        listings.removeAll()
-        guard let tableView = tableView else {return}
-        tableView.reloadData()
     }
     
     func setupGivings() {
@@ -350,7 +344,7 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didselectrowat")
         selectedProduct = listings[indexPath.row]
-        if showWishlistMatches || showGivings {return}
+        if showWishlistMatches || showGivings || showNearest {return}
             if selectedProduct?.username == UserService.user.username {
                
                 performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)

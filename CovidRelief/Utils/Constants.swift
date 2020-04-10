@@ -32,7 +32,7 @@ struct AppColors {
     static let OffWhite = #colorLiteral(red: 0.9542341828, green: 1, blue: 0.9506618381, alpha: 1)
     static let BlackShadow = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     static let Orange = #colorLiteral(red: 1, green: 0.5176470588, blue: 0.3882352941, alpha: 1)
-    static let NavyBlue = #colorLiteral(red: 0.3411764706, green: 0.3529411765, blue: 0.537254902, alpha: 1)
+    static let NavyBlue = #colorLiteral(red: 0.3418669701, green: 0.3526337147, blue: 0.5360661149, alpha: 1)
     
     
 }
@@ -55,6 +55,4 @@ struct Segues {
     static let toVolunteer = "toVolunteer"
     static let toListingDetails = "toListingDetails"
     static let toWishlistMatches = "toWishlistMatches"
-    static let toCategoriesVC = "toCategoriesVC"
-    static let toListingsFromCategories = "toListingsFromCategories"
 }
