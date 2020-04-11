@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var emailTxt: UITextField!
@@ -22,10 +22,15 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        emailTxt.delegate = self
+        passwordTxt.delegate = self
         // Do any additional setup after loading the view.
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     @IBAction func forgotPassClicked(_ sender: Any) {
         let vc = ForgotPasswordVC()

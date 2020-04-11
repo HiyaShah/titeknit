@@ -50,12 +50,14 @@
 		71E3188F243991B80067DC0F /* ListingDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E3188E243991B80067DC0F /* ListingDetailVC.swift */; };
 		71E318922439A32E0067DC0F /* DeliverQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E318902439A32E0067DC0F /* DeliverQuestionVC.swift */; };
 		71E318932439A32E0067DC0F /* DeliverQuestionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71E318912439A32E0067DC0F /* DeliverQuestionVC.xib */; };
-		989E7085405828E402B22577 /* Pods_CovidRelief.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D770321858315899DA5A33 /* Pods_CovidRelief.framework */; };
+		C244BB378531778DB1740F12 /* libPods-CovidRelief.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E3BF2B61430610F86FFF65 /* libPods-CovidRelief.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		02D770321858315899DA5A33 /* Pods_CovidRelief.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovidRelief.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6248392024EFF22CF39B67F7 /* Pods-CovidRelief.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovidRelief.release.xcconfig"; path = "Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief.release.xcconfig"; sourceTree = "<group>"; };
+		71053EAE24424D5400959DBC /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71053EB024424EA200959DBC /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71053EB224424ECD00959DBC /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsVC.swift; sourceTree = "<group>"; };
 		71A2BAA02429AFB8003B65C0 /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		71A314AD2426ECB50055CCEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		71E318902439A32E0067DC0F /* DeliverQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverQuestionVC.swift; sourceTree = "<group>"; };
 		71E318912439A32E0067DC0F /* DeliverQuestionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliverQuestionVC.xib; sourceTree = "<group>"; };
 		8B86D1A927D459BD7307C5CC /* Pods-CovidRelief.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovidRelief.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief.debug.xcconfig"; sourceTree = "<group>"; };
+		E9E3BF2B61430610F86FFF65 /* libPods-CovidRelief.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CovidRelief.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				989E7085405828E402B22577 /* Pods_CovidRelief.framework in Frameworks */,
+				C244BB378531778DB1740F12 /* libPods-CovidRelief.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +124,6 @@
 			children = (
 				71E318902439A32E0067DC0F /* DeliverQuestionVC.swift */,
 				71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */,
-				71B27ACA2426B83E00B2C9FA /* AppDelegate.swift */,
 				71A314C42427E7510055CCEA /* LoginVC.swift */,
 				71A314C62427E7650055CCEA /* RegisterVC.swift */,
 				71A314D424282B620055CCEA /* ViewController.swift */,
@@ -221,6 +223,7 @@
 				71A314B02426F2610055CCEA /* View */,
 				71A314AF2426F2590055CCEA /* Controller */,
 				71A314B22426F26D0055CCEA /* Storyboard */,
+				71B27ACA2426B83E00B2C9FA /* AppDelegate.swift */,
 				71B27ACC2426B83E00B2C9FA /* SceneDelegate.swift */,
 				71B27AD32426B84300B2C9FA /* Assets.xcassets */,
 				71B27AD82426B84300B2C9FA /* Info.plist */,
@@ -260,7 +263,10 @@
 		84649330C2F620D149E76C2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				02D770321858315899DA5A33 /* Pods_CovidRelief.framework */,
+				71053EB224424ECD00959DBC /* IQKeyboardManagerSwift.framework */,
+				71053EB024424EA200959DBC /* GoogleUtilities.framework */,
+				71053EAE24424D5400959DBC /* GTMSessionFetcher.framework */,
+				E9E3BF2B61430610F86FFF65 /* libPods-CovidRelief.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -285,7 +291,7 @@
 				71B27AC32426B83E00B2C9FA /* Sources */,
 				71B27AC42426B83E00B2C9FA /* Frameworks */,
 				71B27AC52426B83E00B2C9FA /* Resources */,
-				313D4AB63274F5F230DCAC54 /* [CP] Embed Pods Frameworks */,
+				7D7211DA0405E18950DA53C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,40 +356,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		313D4AB63274F5F230DCAC54 /* [CP] Embed Pods Frameworks */ = {
+		7D7211DA0405E18950DA53C6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${SRCROOT}/Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Cpp.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CovidRelief/Pods-CovidRelief-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C831460DB7A5317F4F472872 /* [CP] Check Pods Manifest.lock */ = {

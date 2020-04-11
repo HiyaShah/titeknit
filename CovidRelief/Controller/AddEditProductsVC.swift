@@ -11,7 +11,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 
-class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     
 
@@ -47,6 +47,10 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
             listingImgView.clipsToBounds = true
             listingImgView.addGestureRecognizer(tap)
             
+            listingName.delegate = self
+            stock.delegate = self
+            listingDescription.delegate = self
+            
             if let listing = listingToEdit {
                 self.title = "Edit Listing"
                 listingName.text = listing.name
@@ -71,6 +75,20 @@ class AddEditProductsVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
             listingTypePickerView.dataSource = self
             listingTypePickerView.delegate = self
         }
+    
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
+        }
+    
+        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            if(text == "\n") {
+                textView.resignFirstResponder()
+                return false
+            }
+            return true
+        }
+
         
         @objc func imgTapped() {
             launchImgPicker()

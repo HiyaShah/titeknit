@@ -466,8 +466,8 @@
             filePath = "CovidRelief/Controller/UserInformationVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "radiusSlid(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -476,22 +476,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "14170A02-B78E-48BC-81E7-C017CAF12F0E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CovidRelief/Controller/UserInformationVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "saveChangesPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CE9AA41B-48C9-4383-BA29-C88E692BEC50"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -507,6 +491,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "CE9AA41B-48C9-4383-BA29-C88E692BEC50"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CovidRelief/Controller/UserInformationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "saveChangesPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "B6FB48E3-A679-4BCD-90EB-7E05C99676BD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -514,8 +514,8 @@
             filePath = "CovidRelief/Controller/UserInformationVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -530,8 +530,8 @@
             filePath = "CovidRelief/Controller/UserInformationVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -546,8 +546,8 @@
             filePath = "CovidRelief/Controller/UserInformationVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -562,8 +562,8 @@
             filePath = "CovidRelief/Controller/UserInformationVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -578,8 +578,8 @@
             filePath = "CovidRelief/Controller/UserInformationVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -594,8 +594,8 @@
             filePath = "CovidRelief/Controller/UserInformationVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "updateData(email:username:zipcode:city:areaRadius:nearbyZips:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -23,10 +23,10 @@ class ListingCell: UITableViewCell {
     @IBOutlet weak var listingImg: RoundedImageView!
     
     @IBOutlet weak var listingTitle: UILabel!
-    @IBOutlet weak var listingCity: UILabel!
     
     @IBOutlet weak var stockCount: RoundedNotification!
     
+    @IBOutlet weak var typeLbl: UILabel!
     @IBOutlet weak var usernameLbl: UILabel!
     
     weak var delegate : ListingCellDelegate?
@@ -44,10 +44,9 @@ class ListingCell: UITableViewCell {
         self.delegate = delegate
         listingTitle.text = listing.name
         stockCount.text = String(listing.stock)
-        listingCity.text = listing.city
-        usernameLbl.text = listing.username
-        self.layer.borderWidth = 1.0
-        self.layer.borderColor = #colorLiteral(red: 0.3418669701, green: 0.3526337147, blue: 0.5360661149, alpha: 1)
+        usernameLbl.text = "\(listing.username), \(listing.city)"
+        typeLbl.text = listing.type
+
 
         
         

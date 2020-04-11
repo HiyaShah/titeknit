@@ -36,6 +36,8 @@ class UserInformationVC: UIViewController {
         locationManager.delegate = self
         distanceManager.delegate = self
         zipcodeTxt.delegate = self
+        usernameTxt.delegate = self
+        emailTxt.delegate = self
         
         
         usernameTxt.text = UserService.user.username
@@ -61,6 +63,8 @@ class UserInformationVC: UIViewController {
         radiusLbl.text = "\(formattedCurrentValue) miles"
         
     }
+    
+    
     
     @IBAction func saveChangesPressed(_ sender: Any) {
         guard let email = emailTxt.text , email.isNotEmpty ,
@@ -137,6 +141,9 @@ extension UserInformationVC: UITextFieldDelegate, LocationManagerDelegate, Dista
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         zipcodeTxt.endEditing(true)
+        self.view.endEditing(true)
+        
+        
         return true
     }
     

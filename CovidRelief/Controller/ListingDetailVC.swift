@@ -21,6 +21,7 @@ class ListingDetailVC: UIViewController {
     
     @IBOutlet weak var listingDescriptionText: UILabel!
     
+    @IBOutlet weak var requestBtn: RoundedButton!
     
     
     var listing : Listing?
@@ -44,7 +45,10 @@ class ListingDetailVC: UIViewController {
                 listingImgView.kf.setImage(with: url)
             }
             
-            
+            if UserService.isGuest || UserService.user.username == listing.username {
+                requestBtn.isHidden = true
+
+            }
         }
         self.title = "Listing Details"
     }

@@ -11,7 +11,7 @@ import Firebase
 import CoreLocation
 import FirebaseFirestore
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
@@ -30,6 +30,12 @@ class RegisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        usernameTxt.delegate = self
+        emailTxt.delegate = self
+        zipcodeTxt.delegate = self
+        passwordTxt.delegate = self
+        confirmPassTxt.delegate = self
+        
         
         
         
@@ -68,6 +74,10 @@ class RegisterVC: UIViewController {
             passCheckImg.image = UIImage(named: AppImages.RedCheck)
             confirmPassCheckImg.image = UIImage(named: AppImages.RedCheck)
         }
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     @IBAction func registerClicked(_ sender: Any) {
