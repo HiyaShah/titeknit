@@ -41,6 +41,7 @@ struct Identifiers {
     static let CategoryCell = "CategoryCell"
     static let ListingCell = "ListingCell"
     static let TypesSupportedCell = "TypesSupported"
+    static let RequestCellTableViewCell = "RequestCellTableViewCell"
     
 }
 

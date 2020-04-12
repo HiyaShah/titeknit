@@ -32,6 +32,7 @@ final class _UserService {
     var wishlistListener: ListenerRegistration? = nil
     var wishlistMatchListener: ListenerRegistration? = nil
     
+    
     var isGuest : Bool {
         
         guard let authUser = auth.currentUser else {

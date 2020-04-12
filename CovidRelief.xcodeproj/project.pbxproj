@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71053EB62442B91400959DBC /* RequestCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71053EB42442B91300959DBC /* RequestCellTableViewCell.swift */; };
+		71053EB72442B91400959DBC /* RequestCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71053EB52442B91300959DBC /* RequestCellTableViewCell.xib */; };
+		71053EB92442BF5700959DBC /* ListingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71053EB82442BF5700959DBC /* ListingService.swift */; };
 		71A2BA9F2429AF3B003B65C0 /* ListingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */; };
 		71A2BAA12429AFB8003B65C0 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A2BAA02429AFB8003B65C0 /* Listing.swift */; };
 		71A314AE2426ECB50055CCEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A314AD2426ECB50055CCEA /* GoogleService-Info.plist */; };
@@ -58,6 +61,9 @@
 		71053EAE24424D5400959DBC /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71053EB024424EA200959DBC /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71053EB224424ECD00959DBC /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71053EB42442B91300959DBC /* RequestCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCellTableViewCell.swift; sourceTree = "<group>"; };
+		71053EB52442B91300959DBC /* RequestCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestCellTableViewCell.xib; sourceTree = "<group>"; };
+		71053EB82442BF5700959DBC /* ListingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingService.swift; sourceTree = "<group>"; };
 		71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsVC.swift; sourceTree = "<group>"; };
 		71A2BAA02429AFB8003B65C0 /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		71A314AD2426ECB50055CCEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -122,7 +128,6 @@
 		71A314AF2426F2590055CCEA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				71E318902439A32E0067DC0F /* DeliverQuestionVC.swift */,
 				71A2BA9E2429AF3B003B65C0 /* ListingsVC.swift */,
 				71A314C42427E7510055CCEA /* LoginVC.swift */,
 				71A314C62427E7650055CCEA /* RegisterVC.swift */,
@@ -139,11 +144,13 @@
 		71A314B02426F2610055CCEA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				71053EB42442B91300959DBC /* RequestCellTableViewCell.swift */,
 				71A314D724287F480055CCEA /* ForgotPasswordVC.swift */,
 				71A314D0242825550055CCEA /* RoundedViews.swift */,
 				71A314DF24295E9A0055CCEA /* CategoryCell.swift */,
 				71BBC57F242EC2B400A0A882 /* ListingCell.swift */,
 				71E3185E2438018F0067DC0F /* TypesSupported.swift */,
+				71E318902439A32E0067DC0F /* DeliverQuestionVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,6 +198,7 @@
 				71BBC580242EC2B400A0A882 /* ListingCell.xib */,
 				71E3185F2438018F0067DC0F /* TypesSupported.xib */,
 				71E318912439A32E0067DC0F /* DeliverQuestionVC.xib */,
+				71053EB52442B91300959DBC /* RequestCellTableViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				71BBC586242EED3300A0A882 /* UserService.swift */,
+				71053EB82442BF5700959DBC /* ListingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -341,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71B27AD72426B84300B2C9FA /* LaunchScreen.storyboard in Resources */,
+				71053EB72442B91400959DBC /* RequestCellTableViewCell.xib in Resources */,
 				71A314E224295E9A0055CCEA /* CategoryCell.xib in Resources */,
 				71BBC582242EC2B400A0A882 /* ListingCell.xib in Resources */,
 				71A314BF2427E41F0055CCEA /* LoginStoryboard.storyboard in Resources */,
@@ -416,6 +426,8 @@
 				71BBC58B24301FD600A0A882 /* AddEditProductsVC.swift in Sources */,
 				71A314D924287F480055CCEA /* ForgotPasswordVC.swift in Sources */,
 				71BBC5892430065300A0A882 /* User.swift in Sources */,
+				71053EB92442BF5700959DBC /* ListingService.swift in Sources */,
+				71053EB62442B91400959DBC /* RequestCellTableViewCell.swift in Sources */,
 				71E3185D24366D8D0067DC0F /* WishlistVC.swift in Sources */,
 				71E3186524392A420067DC0F /* Wish.swift in Sources */,
 				71B27ACD2426B83E00B2C9FA /* SceneDelegate.swift in Sources */,

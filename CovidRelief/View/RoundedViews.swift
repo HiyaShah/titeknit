@@ -43,7 +43,7 @@ class RoundedListingsView : UIView {
 
 class RoundedNotification: UILabel {
     override func awakeFromNib() {
-        layer.cornerRadius = frame.width/3
+        layer.cornerRadius = frame.width/2
         self.textColor = UIColor.white
         layer.backgroundColor = AppColors.Orange.cgColor
 //        self.backgroundColor = UIColor.red
