@@ -347,7 +347,7 @@ extension ListingsVC: UITableViewDelegate, UITableViewDataSource {
         if showWishlistMatches || showGivings || showNearest {return}
             if selectedProduct?.username == UserService.user.username {
                
-                performSegue(withIdentifier: Segues.toListingDetails, sender: self)
+                performSegue(withIdentifier: Segues.ToAddEditProducts, sender: self)
             } else {
                 performSegue(withIdentifier: Segues.toListingDetails, sender: self)
             

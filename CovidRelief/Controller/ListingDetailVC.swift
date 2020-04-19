@@ -135,8 +135,10 @@ extension ListingDetailVC: UITableViewDelegate, UITableViewDataSource {
             tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .fade)
     
             print("document (listing) added")
+        if requests[newIndex].username == UserService.user.username {
             requestBtn.setTitle("Delete Request", for: .normal)
         }
+    }
         
         func onDocumentModified(change: DocumentChange, user: User) {
             print("document (listing) modifying")
@@ -175,7 +177,7 @@ extension ListingDetailVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.RequestCellTableViewCell, for: indexPath) as? RequestCellTableViewCell {
-            cell.configureCell(user: UserService.user, isGiver: isGiver)
+            cell.configureCell(user: requests[indexPath.row], isGiver: isGiver)
             return cell
         }
         return UITableViewCell()
